@@ -1,0 +1,168 @@
+openapi: 3.1.0
+info:
+  title: billing-api Accounts Links Api API
+  version: '4'
+  description: The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).
+servers:
+- url: https://api.usebutton.com/v1/affiliation
+security:
+- sec0: []
+tags:
+- name: Links Api
+paths:
+  /:
+    post:
+      summary: Generate a Link
+      description: Generate and return a fully attributable Button-wrapped link to the desired Retailer page by passing the full page URL or the affiliate tracking link.
+      operationId: generate-a-link
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - url
+              properties:
+                url:
+                  type: string
+                  description: The target destination URL, such as `https://example.com/products`.
+                experience:
+                  type: object
+                  description: Optional customizations for the linking experience.
+                  properties:
+                    btn_pub_user:
+                      type: string
+                      description: 'Your user''s unique identifier. Typically a user ID or a stable hash of one. This value will be passed back to you in webhook requests associated with that downstream Brand activity. Must be a string between 1 and 255 characters long in the ASCII range [0x21-0x7E]. Note: Loyalty Publishers must include this value in order to know which user to reward.'
+                    btn_pub_ref:
+                      type: string
+                      description: A Publisher reference value (e.g. click ID, campaign ID) that can be used to associate any value with any downstream Brand activity such as orders, app-installs, etc. This value will be passed back to you in webhook requests associated with that downstream Brand activity. String with a maximum length of 512.
+                    btn_desktop_url:
+                      type: string
+                      description: A url to redirect to if the user is on desktop. If unset, the target flow is executed.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"meta\": {\n    \"status\": \"ok\"\n  },\n  \"object\":{\n    \"merchant_id\": \"org-YYY\",\n    \"affiliate\": null,\n    \"links\": {\n      \"universal\": \"https://r.bttn.io?btn_url=https%3A%2F%2Fwww.brand123.com&btn_pub_user=your-user-id&btn_pub_ref=your-publisher--reference&btn_ref=org-XXX\"\n    }\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: ok
+                  object:
+                    type: object
+                    properties:
+                      merchant_id:
+                        type: string
+                        example: org-YYY
+                      affiliate: {}
+                      links:
+                        type: object
+                        properties:
+                          universal:
+                            type: string
+                            example: https://r.bttn.io?btn_url=https%3A%2F%2Fwww.brand123.com&btn_pub_user=your-user-id&btn_pub_ref=your-publisher--reference&btn_ref=org-XXX
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"meta\": {\n        \"status\": \"error\"\n    },\n    \"error\": {\n        \"message\": \"Invalid api_key\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Invalid api_key
+        '403':
+          description: '403'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"meta\": {\n        \"status\": \"error\"\n    },\n    \"error\": {\n        \"message\": \"Not approved for link building\",\n        \"type\": \"NoMerchantApproval\",\n        \"details\": {\n            \"merchant_id\": \"org-123\"\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Not approved for link building
+                      type:
+                        type: string
+                        example: NoMerchantApproval
+                      details:
+                        type: object
+                        properties:
+                          merchant_id:
+                            type: string
+                            example: org-123
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"meta\": {\n        \"status\": \"error\"\n    },\n    \"error\": {\n        \"message\": \"Merchant could not be detected from the url\",\n        \"type\": \"NoMerchantLinkSupport\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Merchant could not be detected from the url
+                      type:
+                        type: string
+                        example: NoMerchantLinkSupport
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://api.usebutton.com/v1/links \\\n  -X POST \\\n  -u YOUR_API_KEY: \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"url\": \"https://www.brand123.com\",\n    \"experience\": {\n      \"btn_pub_user\": \"your-user-id\",\n      \"btn_pub_ref\":\"your-publisher-reference\"\n    }\n  }'"
+        samples-languages:
+        - curl
+      tags:
+      - Links Api
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: false
+x-readme-fauxas: true

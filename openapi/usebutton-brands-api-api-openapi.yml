@@ -1,0 +1,187 @@
+openapi: 3.1.0
+info:
+  title: billing-api Accounts Brands Api API
+  version: '4'
+  description: The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).
+servers:
+- url: https://api.usebutton.com/v1/affiliation
+security:
+- sec0: []
+tags:
+- name: Brands Api
+paths:
+  /:
+    get:
+      summary: List Brand Details
+      description: Retrieve details for the Brands partnered with your organization.
+      operationId: list-brand-details
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"meta\": {\n        \"status\": \"ok\"\n    },\n    \"object\": {\n        \"id\": \"org-3eec44df0966f6f0\",\n        \"name\": \"Brand123\",\n        \"is_live_ready\": true,\n        \"description\": \"Brand description\",\n        \"urls\": {\n            \"homepage\": \"https://brandhomepage.com\"\n        },\n        \"icon_url\": \"https://button.imgix.net/org-3eec44df0966f6f0/icon/f2efde260ddabd11.png\",\n        \"apps\": [\n            {\n              \"os\": \"ios\",\n              \"scheme\": \"brandapp://\"\n            }\n          ],\n        \"supported_hostnames\": [\"brand123.com\", \"brand123homepage.com\", \"us.brand123homepage.com\"],\n        \"subdomain\": \"brandapp\",\n        \"terms_and_conditions\": {\n            \"reporting_window_days\": 0,\n            \"finalization_window_minutes\": 129600,\n            \"additional_terms\": null,\n            \"exclusion_details\": \"Commissions are not valid on taxes, delivery fees, promotions, or payments made with bitcoin.\",\n            \"coupons_allowed\": false,\n            \"gift_cards_allowed\": false\n        }\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: ok
+                  object:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: org-3eec44df0966f6f0
+                      name:
+                        type: string
+                        example: Brand123
+                      is_live_ready:
+                        type: boolean
+                        example: true
+                        default: true
+                      description:
+                        type: string
+                        example: Brand description
+                      urls:
+                        type: object
+                        properties:
+                          homepage:
+                            type: string
+                            example: https://brandhomepage.com
+                      icon_url:
+                        type: string
+                        example: https://button.imgix.net/org-3eec44df0966f6f0/icon/f2efde260ddabd11.png
+                      apps:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            os:
+                              type: string
+                              example: ios
+                            scheme:
+                              type: string
+                              example: brandapp://
+                      supported_hostnames:
+                        type: array
+                        items:
+                          type: string
+                          example: brand123.com
+                      subdomain:
+                        type: string
+                        example: brandapp
+                      terms_and_conditions:
+                        type: object
+                        properties:
+                          reporting_window_days:
+                            type: integer
+                            example: 0
+                            default: 0
+                          finalization_window_minutes:
+                            type: integer
+                            example: 129600
+                            default: 0
+                          additional_terms: {}
+                          exclusion_details:
+                            type: string
+                            example: Commissions are not valid on taxes, delivery fees, promotions, or payments made with bitcoin.
+                          coupons_allowed:
+                            type: boolean
+                            example: false
+                            default: true
+                          gift_cards_allowed:
+                            type: boolean
+                            example: false
+                            default: true
+        '400':
+          description: '400'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"meta\": {\n        \"status\": \"error\"\n    },\n    \"error\": {\n        \"message\": \"Invalid Brand ID: org-xxx\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: 'Invalid Brand ID: org-xxx'
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"meta\": {\n        \"status\": \"error\"\n    },\n    \"error\": {\n        \"message\": \"The calling organization must be a publisher to access this endpoint.\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: The calling organization must be a publisher to access this endpoint.
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"meta\": {\n        \"status\": \"error\"\n    },\n    \"error\": {\n        \"message\": \"Could not find org-262d6eae90030df9\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Could not find org-262d6eae90030df9
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          name: curl
+          code: "# without optional arguments\ncurl https://api.usebutton.com/v1/brands \\\n  -X GET \\\n  -u YOUR_API_KEY:\n\n# with optional arguments\ncurl https://api.usebutton.com/v1/brands/org-xxx \\\n  -X GET \\\n  -u YOUR_API_KEY:"
+        samples-languages:
+        - curl
+      tags:
+      - Brands Api
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: false
+x-readme-fauxas: true

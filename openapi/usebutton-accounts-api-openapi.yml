@@ -1,0 +1,435 @@
+openapi: 3.1.0
+info:
+  title: billing-api Accounts API
+  version: '4'
+  description: The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).
+servers:
+- url: https://api.usebutton.com/v1/affiliation
+security:
+- sec0: []
+tags:
+- name: Accounts
+paths:
+  /accounts:
+    get:
+      summary: List Accounts
+      description: Retrieve the list of billing accounts associated with your organization. Your organization will have one billing account per supported currency.
+      operationId: list-accounts
+      responses:
+        '200':
+          $ref: '#/components/responses/AccountsOK'
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://api.usebutton.com/v1/affiliation/accounts \\\n  -X GET \\\n  -u YOUR_API_KEY:"
+        samples-languages:
+        - curl
+      tags:
+      - Accounts
+  /accounts/{account_id}/transactions:
+    parameters:
+    - name: account_id
+      in: path
+      description: The specific account (currency) to query.
+      required: true
+      schema:
+        type: string
+    get:
+      summary: List Transactions by Account (Single Currency)
+      description: Retrieve a list of transactions within a single billing account (single currency).
+      operationId: list-transactions
+      parameters:
+      - name: cursor
+        in: query
+        description: An opaque string that lets you view a consistent list of transactions.
+        schema:
+          type: string
+      - name: start
+        in: query
+        description: 'Filter transactions created at or after this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+      - name: end
+        in: query
+        description: 'Filter transactions created before this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z'
+        schema:
+          type: string
+          format: date-time
+      - name: time_field
+        in: query
+        description: Time field to filter by. Accepted values are created_date, modified_date, and attribution_date. When not specified, created_date is used as default.
+        schema:
+          type: string
+          enum:
+          - created_date
+          - modified_date
+          - attribution_date
+      - name: page_size
+        in: query
+        description: Number of transaction to retrieve in each request. When not specified, 50 is used as default.
+        schema:
+          type: integer
+          format: int32
+          default: 50
+      - name: country
+        in: query
+        description: 'Filter transactions by country. Country is in ISO 3166 Alpha-2 format (case-insensitive). Example: US'
+        schema:
+          type: string
+      responses:
+        '200':
+          $ref: '#/components/responses/TransactionsByAccountOK'
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://api.usebutton.com/v1/affiliation/accounts/acc-XXX/transactions?start=2024-01-01T00:00:00Z&end=2024-01-05T00:00:00Z \\\n  -X GET \\\n  -u YOUR_API_KEY:"
+        samples-languages:
+        - curl
+      tags:
+      - Accounts
+components:
+  schemas:
+    LineItem:
+      type: object
+      properties:
+        identifier:
+          type:
+          - string
+          - 'null'
+          example: sku-1234
+        total:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 6000
+        amount:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 2000
+        quantity:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 3
+        publisher_commission:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 600
+        sku:
+          type:
+          - string
+          - 'null'
+          example: sku-1234
+        gtin:
+          type:
+          - string
+          - 'null'
+          example: '00400000000001'
+        category:
+          type:
+          - string
+          - 'null'
+          example: Clothes
+        subcategory1:
+          type:
+          - string
+          - 'null'
+          example: Kids
+        description:
+          type:
+          - string
+          - 'null'
+          example: T-shirts
+        attributes:
+          type:
+          - object
+          - 'null'
+          additionalProperties: true
+      additionalProperties: false
+    AccountsResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+      required:
+      - meta
+      - objects
+      additionalProperties: false
+    Transaction:
+      type: object
+      properties:
+        publisher_customer_id:
+          type:
+          - string
+          - 'null'
+          example: 1111-3333-4444-999999999999
+        publisher_organization:
+          type:
+          - string
+          - 'null'
+          example: org-YYY
+        publisher_organization_name:
+          type:
+          - string
+          - 'null'
+          example: Publisher Company Name
+        commerce_organization:
+          type:
+          - string
+          - 'null'
+          example: org-XXX
+        commerce_organization_name:
+          type:
+          - string
+          - 'null'
+          example: Brand Company Name
+        button_id:
+          type:
+          - string
+          - 'null'
+          example: static
+        account_id:
+          type:
+          - string
+          - 'null'
+          example: acc-XXX
+        btn_ref:
+          type:
+          - string
+          - 'null'
+          example: srctok-XXX
+        pub_ref:
+          type:
+          - string
+          - 'null'
+          example: your-publisher-ref
+        button_order_id:
+          type:
+          - string
+          - 'null'
+          example: btnorder-XXX
+        order_id:
+          type:
+          - string
+          - 'null'
+        order_total:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 6000
+        order_currency:
+          type:
+          - string
+          - 'null'
+          example: USD
+        order_line_items:
+          type:
+          - array
+          - 'null'
+          items:
+            $ref: '#/components/schemas/LineItem'
+        order_click_channel:
+          type:
+          - string
+          - 'null'
+          example: app
+        order_purchased_date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        category:
+          type: string
+          example: new-user-order
+        id:
+          type: string
+          example: tx-XXX
+        created_date:
+          type: string
+          format: date-time
+          example: '2024-11-18T19:49:17Z'
+        modified_date:
+          type: string
+          format: date-time
+          example: '2024-11-18T19:49:17Z'
+        validated_date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+        attribution_date:
+          type:
+          - string
+          - 'null'
+          format: date-time
+          example: '2024-11-18T19:49:17Z'
+        amount:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 600
+        currency:
+          type:
+          - string
+          - 'null'
+          example: USD
+        country:
+          type:
+          - string
+          - 'null'
+          example: US
+        status:
+          type: string
+          example: pending
+        advertising_id:
+          type:
+          - string
+          - 'null'
+      required:
+      - id
+      - category
+      - status
+      - created_date
+      - modified_date
+      additionalProperties: true
+    TransactionsResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+      required:
+      - meta
+      - objects
+      additionalProperties: false
+    Meta:
+      type: object
+      properties:
+        status:
+          type: string
+          example: ok
+        next:
+          type:
+          - string
+          - 'null'
+        previous:
+          type:
+          - string
+          - 'null'
+      required:
+      - status
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+          example: acc-xxx
+        name:
+          type: string
+          example: Publisher USD Account
+        currency:
+          type: string
+          example: USD
+        organization:
+          type: string
+          example: org-xxx
+      required:
+      - id
+      - name
+      - currency
+      - organization
+      additionalProperties: false
+  responses:
+    AccountsOK:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccountsResponse'
+          examples:
+            Result:
+              value:
+                meta:
+                  status: ok
+                objects:
+                - id: acc-xxx
+                  name: Button Account
+                  currency: USD
+                  organization: org-xxx
+    TransactionsByAccountOK:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TransactionsResponse'
+          examples:
+            Result:
+              summary: List Transactions by Account
+              value:
+                meta:
+                  status: ok
+                  next: https://api.usebutton.com/v1/affiliation/accounts/acc-xxx/transactions?cursor=cXw
+                  previous: null
+                objects:
+                - publisher_customer_id: 1111-3333-4444-999999999999
+                  publisher_organization: org-YYY
+                  publisher_organization_name: Publisher Company Name
+                  commerce_organization: org-XXX
+                  commerce_organization_name: Brand Company Name
+                  button_id: static
+                  account_id: acc-XXX
+                  btn_ref: srctok-XXX
+                  pub_ref: Publisher Reference String
+                  button_order_id: btnorder-XXX
+                  order_id: null
+                  order_total: 6000
+                  order_currency: USD
+                  order_line_items:
+                  - identifier: sku-1234
+                    total: 6000
+                    amount: 2000
+                    quantity: 3
+                    publisher_commission: 600
+                    sku: sku-1234
+                    gtin: '00400000000001'
+                    category: Clothes
+                    subcategory1: Kids
+                    description: T-shirts
+                    attributes:
+                      size: M
+                  order_click_channel: app
+                  category: new-user-order
+                  id: tx-XXX
+                  created_date: '2024-11-18T19:49:17Z'
+                  modified_date: '2024-11-18T19:49:17Z'
+                  attribution_date: '2024-11-18T19:49:17Z'
+                  amount: 600
+                  currency: USD
+                  country: us
+                  status: pending
+                  advertising_id: null
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: false
+x-readme-fauxas: true

@@ -1,0 +1,199 @@
+openapi: 3.1.0
+info:
+  title: billing-api Accounts Create API
+  version: '4'
+  description: The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).
+servers:
+- url: https://api.usebutton.com/v1/affiliation
+security:
+- sec0: []
+tags:
+- name: Create
+paths:
+  /create/:
+    post:
+      summary: Generate a Shortlink
+      description: Generate and return a Button-templated shortlink that redirects to the URL destination specified. This link can then be used by a Creator to link a product and make attributed purchases.
+      operationId: generate-a-brand-shortlink
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - link_url
+              - btn_pub_ref
+              properties:
+                link_url:
+                  type: string
+                  description: The target destination URL, such as `https://storeurl.com/products?queryparam=tag12345`.
+                btn_pub_ref:
+                  type: string
+                  description: A Publisher reference value (e.g. a tracking ID) that can be used to associate any value with any downstream Brand activity such as orders, etc. This value will be passed back to you in reporting. String with a maximum length of 512.
+                btn_pub_user:
+                  type: string
+                  description: Your user's unique identifier. Typically a user ID or a stable hash of one. This value will be utilized for reporting performance back to you. Must be a string between 1 and 255 characters long in the ASCII range [0x21-0x7E].
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"meta\": {\n    \"status\": \"ok\"\n  },\n  \"object\":{\n      \"short_url\": \"https://o.bttn.io/1234ABCDE\",\n      \"url\": \"https://r.bttn.io?btn_url=https%3A%2F%2Fmybrand.com%2Fproducts%3Ftag%3Dtag12345&btn_pub_user=your-user-id&btn_pub_ref=your-publisher-reference&btn_ref=org-XXX\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: ok
+                  object:
+                    type: object
+                    properties:
+                      short_url:
+                        type: string
+                        example: https://o.bttn.io/1234ABCDE
+                      url:
+                        type: string
+                        example: https://r.bttn.io?btn_url=https%3A%2F%2Fmybrand.com%2Fproducts%3Ftag%3Dtag12345&btn_pub_user=your-user-id&btn_pub_ref=your-publisher-reference&btn_ref=org-XXX
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"meta\": {\n        \"status\": \"error\"\n    },\n    \"error\": {\n        \"message\": \"Invalid api_key\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Invalid api_key
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"meta\": {\n        \"status\": \"error\"\n    },\n    \"error\": {\n        \"message\": \"could not create shortlink\"\n    }\n}"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://api.usebutton.com/v1/shortlink/create \\\n  -X POST \\\n  -u YOUR_API_KEY: \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"link_url\": \"https://mybrand.com/products?tag=tag12345\",\n    \"btn_pub_ref\":\"your-publisher-reference\",\n    \"btn_pub_user\": \"your-pub-user-value\"\n }'"
+        samples-languages:
+        - curl
+      tags:
+      - Create
+  /create:
+    post:
+      summary: Generate a Button Shortlink for an Amazon URL
+      description: 'Generate and return a Button-templated shortlink that redirects to an Amazon page. This link can then be used by a Creator to link an Amazon product and make attributed purchases.
+
+
+        NOTE: Please reach out to your Button representative after configuring this on your end, as we will need to add your organization to an allowlist to fully enable functionality.'
+      operationId: generate-a-shortlink
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - link_url
+              - btn_pub_user
+              properties:
+                link_url:
+                  type: string
+                  description: The target destination URL, such as `https://amazon.com/products?tag=tag12345`.
+                btn_pub_user:
+                  type: string
+                  description: Your user's unique identifier. Typically a user ID or a stable hash of one. This value will be utilized for reporting performance back to you. Must be a string between 1 and 255 characters long in the ASCII range [0x21-0x7E].
+                btn_pub_ref:
+                  type: string
+                  description: A Publisher reference value (e.g. Amazon tracking ID) that can be used to associate any value with any downstream Brand activity such as orders, etc. This value will be passed back to you in reporting. String with a maximum length of 512.
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"meta\": {\n    \"status\": \"ok\"\n  },\n  \"object\":{\n      \"short_url\": \"https://amzlink.to/1234ABCDE\",\n      \"url\": \"https://r.amzlink.to?btn_url=https%3A%2F%2Famazon.com%2Fproducts%3Ftag%3Dtag12345&btn_pub_user=your-user-id&btn_pub_ref=your-publisher-reference&btn_ref=org-XXX\"\n  }\n}"
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: ok
+                  object:
+                    type: object
+                    properties:
+                      short_url:
+                        type: string
+                        example: https://amzlink.to/1234ABCDE
+                      url:
+                        type: string
+                        example: https://r.amzlink.to?btn_url=https%3A%2F%2Famazon.com%2Fproducts%3Ftag%3Dtag12345&btn_pub_user=your-user-id&btn_pub_ref=your-publisher-reference&btn_ref=org-XXX
+        '401':
+          description: '401'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"meta\": {\n        \"status\": \"error\"\n    },\n    \"error\": {\n        \"message\": \"Invalid api_key\"\n    }\n}"
+              schema:
+                type: object
+                properties:
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: string
+                        example: error
+                  error:
+                    type: object
+                    properties:
+                      message:
+                        type: string
+                        example: Invalid api_key
+        '404':
+          description: '404'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n    \"meta\": {\n        \"status\": \"error\"\n    },\n    \"error\": {\n        \"message\": \"could not create shortlink\"\n    }\n}"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://api.usebutton.com/v1/shortlink/create \\\n  -X POST \\\n  -u YOUR_API_KEY: \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"link_url\": \"https://amazon.com/products?tag=tag12345\",\n    \"btn_pub_ref\":\"your-publisher-reference\",\n    \"btn_pub_user\": \"your-pub-user-value\"\n }'"
+        samples-languages:
+        - curl
+      tags:
+      - Create
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: false
+x-readme-fauxas: true

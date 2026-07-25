@@ -1,0 +1,69 @@
+openapi: 3.1.0
+info:
+  title: billing-api Accounts Offers API
+  version: '4'
+  description: The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).
+servers:
+- url: https://api.usebutton.com/v1/affiliation
+security:
+- sec0: []
+tags:
+- name: Offers
+paths:
+  /v1/offers:
+    post:
+      summary: Offers
+      description: Obtain real-time rates/offers available to a Publisher user.
+      operationId: offers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+              - user_id
+              properties:
+                user_id:
+                  type: string
+                  description: Publisher's ID for the user, a string between 1 and 255 characters long in the ASCII range [0x21-0x7E]. This should be the same ID that is passed into the Button SDK when configuring user attribution.
+                device_ids:
+                  type: array
+                  description: 'List of device advertising IDs associated with the user. These must be either IDFAs for iOS or GAIDs for Android. Trim any whitespace in device advertising ID prior to passing it to the API. Note: The API accepts at most 10 combined identifiers (email hashes + device IDs).'
+                  items:
+                    type: string
+                email_sha256s:
+                  type: array
+                  description: 'List of SHA256 email hashes (as a 64-character hex string) associated with the user. Downcase and trim any whitespace of the email address prior to hashing. Note: The API accepts at most 10 combined identifiers (email hashes + device IDs).'
+                  items:
+                    type: string
+                merchant_id:
+                  type: string
+                  description: Brand organization ID with which to restrict user offers.
+                  default: optional
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: "{\n  \"meta\": {\n    \"status\": \"ok\"\n  },\n  \"object\": {\n    \"merchant_offers\": [\n      {\n        \"merchant_id\": \"org-123\",\n        \"offers\": [\n          {\n            \"id\": \"offer-XXX\",\n            \"rate_percent\": \"4.5\",\n            \"display_params\": {\n              \"category\": \"Video Games\",\n              \"offer_type\": \"category\"\n            },\n            \"rank\": 1\n          },\n          {\n            \"id\": \"offer-YYY\",\n            \"rate_percent\": \"2\",\n            \"display_params\": {\n              \"offer_tag\": \"promotional\"\n            },\n            \"rank\": 2\n          },\n          {\n            \"id\": \"offer-ZZZ\",\n            \"rate_fixed\": \"1.00\",\n            \"currency\": \"USD\",\n            \"display_params\": {},\n            \"rank\": 3\n          }\n        ]\n      }\n    ]\n  }\n}"
+      deprecated: false
+      x-readme:
+        code-samples:
+        - language: curl
+          code: "curl https://pubapi.usebutton.com/v1/offers \\\n  -X POST \\\n  -u YOUR_API_KEY: \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"user_id\": \"some-user-id\",\n    \"device_ids\": [\"123\"],\n    \"email_sha256s\": [\"1234567a1234567a1234567a1234567a1234567a1234567a1234567a1234567a\"]\n  }'"
+        samples-languages:
+        - curl
+      tags:
+      - Offers
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: false
+x-readme-fauxas: true
