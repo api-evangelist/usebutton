@@ -1,0 +1,28 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.usebutton.com/docs/order-api-overview.md, https://developer.usebutton.com/docs/manual-brand-testing.md, https://developer.usebutton.com/docs/validating-order-reporting.md
+sandbox:
+  dedicated_environment: false
+  notes: >-
+    Button has no separate sandbox host or test-mode API keys documented. Testing is done against
+    the production API using published fake attribution tokens, plus manual integration testing
+    guides for linking/attribution and order reporting.
+test_values:
+  - name: Fake Button Attribution Token
+    field: btn_ref
+    format: '^fakesrctok-[a-f0-9]{16}$'
+    example: fakesrctok-abcdef0123456789
+    usage: >-
+      When testing an Order API integration, send dummy Attribution Tokens in this documented
+      format instead of real srctok- values.
+    source: https://developer.usebutton.com/docs/order-api-overview
+testing_guides:
+  - title: Testing your Button integration (Merchant Library)
+    url: https://developer.usebutton.com/docs/manual-brand-testing
+    covers: Linking and attribution routing; Attribution Token storage
+  - title: Validating Linking and Attribution
+    url: https://developer.usebutton.com/docs/sdk-integration-validation
+  - title: Validating Order Reporting
+    url: https://developer.usebutton.com/docs/validating-order-reporting
+  - title: Webhook test apps (Node.js, Ruby, Python example receivers)
+    url: https://github.com/button/webhook-test-apps

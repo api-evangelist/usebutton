@@ -1,0 +1,243 @@
+{
+  "info": {
+    "_postman_id": "31ef2918-6d53-49b2-9359-c6b44c987c02",
+    "name": "billing-api Accounts Brands Api API",
+    "description": "The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:25:47.000Z",
+    "updatedAt": "2026-07-28T03:25:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-31ef2918-6d53-49b2-9359-c6b44c987c02"
+  },
+  "item": [
+    {
+      "name": "/",
+      "item": [
+        {
+          "name": "List Brand Details",
+          "id": "909210f0-2f14-4330-bb3a-837945c55c45",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                ""
+              ]
+            },
+            "description": "Retrieve details for the Brands partnered with your organization."
+          },
+          "response": [
+            {
+              "id": "09af5879-b572-4fc8-92c7-a96749f86b08",
+              "name": "200",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"meta\": {\n    \"status\": \"<string>\"\n  },\n  \"object\": {\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"is_live_ready\": true,\n    \"description\": \"<string>\",\n    \"urls\": {\n      \"homepage\": \"<string>\"\n    },\n    \"icon_url\": \"<string>\",\n    \"apps\": [\n      {\n        \"os\": \"<string>\",\n        \"scheme\": \"<string>\"\n      },\n      {\n        \"os\": \"<string>\",\n        \"scheme\": \"<string>\"\n      }\n    ],\n    \"supported_hostnames\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"subdomain\": \"<string>\",\n    \"terms_and_conditions\": {\n      \"reporting_window_days\": 0,\n      \"finalization_window_minutes\": 0,\n      \"additional_terms\": {},\n      \"exclusion_details\": \"<string>\",\n      \"coupons_allowed\": true,\n      \"gift_cards_allowed\": true\n    }\n  }\n}",
+              "createdAt": "2026-07-28T03:25:47.000Z",
+              "updatedAt": "2026-07-28T03:25:47.000Z",
+              "uid": "35240-09af5879-b572-4fc8-92c7-a96749f86b08"
+            },
+            {
+              "id": "ba645549-ecfc-451d-96ff-e94461ba7628",
+              "name": "400",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"meta\": {\n    \"status\": \"<string>\"\n  },\n  \"error\": {\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T03:25:47.000Z",
+              "updatedAt": "2026-07-28T03:25:47.000Z",
+              "uid": "35240-ba645549-ecfc-451d-96ff-e94461ba7628"
+            },
+            {
+              "id": "72466f4d-ed51-4399-aca4-47f0f1da791d",
+              "name": "401",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"meta\": {\n    \"status\": \"<string>\"\n  },\n  \"error\": {\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T03:25:47.000Z",
+              "updatedAt": "2026-07-28T03:25:47.000Z",
+              "uid": "35240-72466f4d-ed51-4399-aca4-47f0f1da791d"
+            },
+            {
+              "id": "3dec1625-e296-460e-bfaa-b8775b94e595",
+              "name": "404",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    ""
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"meta\": {\n    \"status\": \"<string>\"\n  },\n  \"error\": {\n    \"message\": \"<string>\"\n  }\n}",
+              "createdAt": "2026-07-28T03:25:47.000Z",
+              "updatedAt": "2026-07-28T03:25:47.000Z",
+              "uid": "35240-3dec1625-e296-460e-bfaa-b8775b94e595"
+            }
+          ],
+          "createdAt": "2026-07-28T03:25:47.000Z",
+          "updatedAt": "2026-07-28T03:25:47.000Z",
+          "uid": "35240-909210f0-2f14-4330-bb3a-837945c55c45"
+        }
+      ],
+      "id": "91c66292-792e-495d-b541-b52dbdb950bc",
+      "createdAt": "2026-07-28T03:25:47.000Z",
+      "updatedAt": "2026-07-28T03:25:47.000Z",
+      "uid": "35240-91c66292-792e-495d-b541-b52dbdb950bc"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.usebutton.com/v1/affiliation"
+    }
+  ]
+}

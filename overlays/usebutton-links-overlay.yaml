@@ -1,0 +1,21 @@
+# generated: '2026-07-21'
+# method: generated
+# source: API Evangelist enrichment pipeline (enhancements over the harvested spec; original left unmutated)
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Button Links API
+  version: 1.0.0
+extends: openapi/usebutton-links-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: usebutton
+        artifacts:
+          authentication: authentication/usebutton-authentication.yml
+          errors: errors/usebutton-problem-types.yml
+  - target: $.paths['/'].post
+    update:
+      tags:
+        - Links
+      x-apievangelist-notes: Pass btn_pub_user and btn_pub_ref so downstream webhook transactions carry your user and campaign references; 403 NoMerchantApproval and 404 NoMerchantLinkSupport are the two documented business errors.

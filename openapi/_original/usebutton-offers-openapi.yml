@@ -1,0 +1,116 @@
+# generated: '2026-07-21'
+# method: searched
+# source: https://developer.usebutton.com/reference/offers.md (OpenAPI definition embedded in Button's ReadMe reference page)
+# note: Button documents a rate limit of 5,000 requests per minute for the Offers API
+openapi: 3.1.0
+info:
+  title: offers-api
+  version: '4'
+  description: The Offers API delivers real-time user offers to Publishers. Both device_ids and email_sha256s should be provided in the request when available. The Offers API has a rate limit of 5,000 requests per minute.
+servers:
+  - url: https://pubapi.usebutton.com/
+components:
+  securitySchemes:
+    sec0:
+      type: http
+      scheme: basic
+security:
+  - sec0: []
+paths:
+  /v1/offers:
+    post:
+      summary: Offers
+      description: Obtain real-time rates/offers available to a Publisher user.
+      operationId: offers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              required:
+                - user_id
+              properties:
+                user_id:
+                  type: string
+                  description: Publisher's ID for the user, a string between 1 and 255 characters long in the ASCII range [0x21-0x7E]. This should be the same ID that is passed into the Button SDK when configuring user attribution.
+                device_ids:
+                  type: array
+                  description: 'List of device advertising IDs associated with the user. These must be either IDFAs for iOS or GAIDs for Android. Trim any whitespace in device advertising ID prior to passing it to the API. Note: The API accepts at most 10 combined identifiers (email hashes + device IDs).'
+                  items:
+                    type: string
+                email_sha256s:
+                  type: array
+                  description: 'List of SHA256 email hashes (as a 64-character hex string) associated with the user. Downcase and trim any whitespace of the email address prior to hashing. Note: The API accepts at most 10 combined identifiers (email hashes + device IDs).'
+                  items:
+                    type: string
+                merchant_id:
+                  type: string
+                  description: Brand organization ID with which to restrict user offers.
+                  default: optional
+      responses:
+        '200':
+          description: '200'
+          content:
+            application/json:
+              examples:
+                Result:
+                  value: |-
+                    {
+                      "meta": {
+                        "status": "ok"
+                      },
+                      "object": {
+                        "merchant_offers": [
+                          {
+                            "merchant_id": "org-123",
+                            "offers": [
+                              {
+                                "id": "offer-XXX",
+                                "rate_percent": "4.5",
+                                "display_params": {
+                                  "category": "Video Games",
+                                  "offer_type": "category"
+                                },
+                                "rank": 1
+                              },
+                              {
+                                "id": "offer-YYY",
+                                "rate_percent": "2",
+                                "display_params": {
+                                  "offer_tag": "promotional"
+                                },
+                                "rank": 2
+                              },
+                              {
+                                "id": "offer-ZZZ",
+                                "rate_fixed": "1.00",
+                                "currency": "USD",
+                                "display_params": {},
+                                "rank": 3
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    }
+      deprecated: false
+      x-readme:
+        code-samples:
+          - language: curl
+            code: |-
+              curl https://pubapi.usebutton.com/v1/offers \
+                -X POST \
+                -u YOUR_API_KEY: \
+                -H "Content-Type: application/json" \
+                -d '{
+                  "user_id": "some-user-id",
+                  "device_ids": ["123"],
+                  "email_sha256s": ["1234567a1234567a1234567a1234567a1234567a1234567a1234567a1234567a"]
+                }'
+        samples-languages:
+          - curl
+x-readme:
+  headers: []
+  explorer-enabled: false
+  proxy-enabled: false
+x-readme-fauxas: true

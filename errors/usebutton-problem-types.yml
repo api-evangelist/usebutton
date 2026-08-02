@@ -1,0 +1,55 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/usebutton-brands-openapi.yml, openapi/usebutton-links-openapi.yml, openapi/usebutton-shortlink-openapi.yml + https://developer.usebutton.com/docs/webhook-semantics.md
+format: envelope
+envelope:
+  shape: '{"meta": {"status": "error"}, "error": {"message": "...", "type": "...", "details": {...}}}'
+  fields:
+    - meta.status: '"error" on failure, "ok" on success'
+    - error.message: human-readable message
+    - error.type: machine-readable error class (present on some errors)
+    - error.details: structured context (present on some errors)
+problems:
+  - status: 400
+    title: Bad request
+    example_message: 'Invalid Brand ID: org-xxx'
+    source_operation: openapi/usebutton-brands-openapi.yml#list-brand-details
+  - status: 401
+    title: Invalid API key
+    example_message: Invalid api_key
+    remediation: Authenticate with HTTP Basic using your organization API key as the username and a blank password.
+    source_operation: openapi/usebutton-links-openapi.yml#generate-a-link
+  - status: 401
+    title: Wrong organization type
+    example_message: The calling organization must be a publisher to access this endpoint.
+    source_operation: openapi/usebutton-brands-openapi.yml#list-brand-details
+  - status: 403
+    title: Not approved for link building
+    type: NoMerchantApproval
+    details_fields: [merchant_id]
+    remediation: The Publisher organization is not approved to build links for this merchant; request approval from your Button representative.
+    source_operation: openapi/usebutton-links-openapi.yml#generate-a-link
+  - status: 404
+    title: Merchant could not be detected from the url
+    type: NoMerchantLinkSupport
+    remediation: The target URL does not belong to a Brand supported by Button link building.
+    source_operation: openapi/usebutton-links-openapi.yml#generate-a-link
+  - status: 404
+    title: Resource not found
+    example_message: Could not find org-262d6eae90030df9
+    source_operation: openapi/usebutton-brands-openapi.yml#list-brand-details
+  - status: 404
+    title: Could not create shortlink
+    example_message: could not create shortlink
+    source_operation: openapi/usebutton-shortlink-openapi.yml#generate-a-brand-shortlink
+webhook_response_codes:
+  note: Codes the PUBLISHER's receiver returns to Button (from webhook-semantics docs)
+  codes:
+    - status: 200/204
+      meaning: Webhook accepted and successfully processed
+    - status: 202
+      meaning: Webhook accepted but processing was unsuccessful
+    - status: 400
+      meaning: Webhook invalid and cannot be processed; Button will not re-send
+    - status: 401
+      meaning: Webhook signature invalid; Button will re-send

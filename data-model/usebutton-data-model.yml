@@ -1,0 +1,111 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/ (five specs) + transaction/webhook object references in the developer docs
+id_prefixes:
+  - prefix: org-
+    entity: Organization (Publisher or Brand)
+  - prefix: acc-
+    entity: Account (billing account, one per currency)
+  - prefix: tx-
+    entity: Transaction
+  - prefix: btnorder-
+    entity: ButtonOrder (Button-generated order ID)
+  - prefix: srctok-
+    entity: AttributionToken (btn_ref)
+  - prefix: hook-
+    entity: WebhookEvent
+  - prefix: attempt-
+    entity: WebhookDeliveryAttempt
+  - prefix: offer-
+    entity: Offer
+  - prefix: ratecard-
+    entity: RateCard
+entities:
+  - name: Organization
+    description: Two-sided marketplace party; either a Publisher (drives traffic) or a Brand (receives transactions)
+  - name: Brand
+    description: Brand organization details returned by the Brands API (apps, supported hostnames, terms_and_conditions)
+    source: openapi/usebutton-brands-openapi.yml
+  - name: Account
+    description: Billing account; one per currency per organization
+    source: openapi/usebutton-billing-openapi.yml
+  - name: Transaction
+    description: Record of a commission owed or earned (order or app-install)
+    source: openapi/usebutton-billing-openapi.yml
+  - name: LineItem
+    description: Order line item inside a transaction
+    source: openapi/usebutton-billing-openapi.yml
+  - name: Link
+    description: Button-wrapped attributable deep link
+    source: openapi/usebutton-links-openapi.yml
+  - name: Shortlink
+    description: Button-templated short URL for creators (o.bttn.io / amzlink.to)
+    source: openapi/usebutton-shortlink-openapi.yml
+  - name: MerchantOffer
+    description: Per-brand offer set returned by the Offers API
+    source: openapi/usebutton-offers-openapi.yml
+  - name: Offer
+    description: Individual rate/offer (rate_percent or rate_fixed + display_params)
+    source: openapi/usebutton-offers-openapi.yml
+  - name: Order
+    description: Brand-reported order (Order API, documented in guides; create/update/cancel at /v1/order)
+    source: https://developer.usebutton.com/docs/order-api-overview
+  - name: WebhookEvent
+    description: Transaction event notification (tx-pending / tx-validated / tx-declined)
+    source: asyncapi/usebutton-webhooks.yml
+relationships:
+  - from: Account
+    to: Organization
+    kind: belongs_to
+    via: organization
+  - from: Transaction
+    to: Account
+    kind: belongs_to
+    via: account_id
+  - from: Transaction
+    to: Organization
+    kind: belongs_to
+    via: publisher_organization
+    note: Publisher that drove the transaction
+  - from: Transaction
+    to: Organization
+    kind: belongs_to
+    via: commerce_organization
+    note: Brand that received the billable transaction
+  - from: Transaction
+    to: LineItem
+    kind: has_many
+    via: order_line_items
+  - from: Transaction
+    to: AttributionToken
+    kind: belongs_to
+    via: btn_ref
+  - from: Transaction
+    to: ButtonOrder
+    kind: belongs_to
+    via: button_order_id
+  - from: Transaction
+    to: RateCard
+    kind: belongs_to
+    via: rate_card_id
+  - from: MerchantOffer
+    to: Organization
+    kind: belongs_to
+    via: merchant_id
+  - from: MerchantOffer
+    to: Offer
+    kind: has_many
+    via: offers
+  - from: Link
+    to: Organization
+    kind: belongs_to
+    via: merchant_id
+  - from: Order
+    to: Transaction
+    kind: has_many
+    via: btn_ref
+    note: Brand-reported orders drive publisher transactions through attribution
+  - from: WebhookEvent
+    to: Transaction
+    kind: has_one
+    via: data

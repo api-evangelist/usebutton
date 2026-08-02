@@ -1,0 +1,25 @@
+# generated: '2026-07-21'
+# method: generated
+# source: API Evangelist enrichment pipeline (enhancements over the harvested spec; original left unmutated)
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Button Offers API
+  version: 1.0.0
+extends: openapi/usebutton-offers-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: usebutton
+        artifacts:
+          authentication: authentication/usebutton-authentication.yml
+          conventions: conventions/usebutton-conventions.yml
+      x-rate-limit:
+        limit: 5000
+        window: minute
+        source: https://developer.usebutton.com/reference/offers
+  - target: $.paths['/v1/offers'].post
+    update:
+      tags:
+        - Offers
+      x-apievangelist-notes: Provide both device_ids and email_sha256s when available; at most 10 combined identifiers per request. Best practices at https://developer.usebutton.com/docs/offers-api-best-practices.

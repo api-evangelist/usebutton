@@ -1,0 +1,181 @@
+{
+  "info": {
+    "_postman_id": "0504be47-532e-4dcf-a06e-d4587f66a062",
+    "name": "billing-api Accounts Transactions API",
+    "description": "The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:25:51.000Z",
+    "updatedAt": "2026-07-28T03:25:51.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-0504be47-532e-4dcf-a06e-d4587f66a062"
+  },
+  "item": [
+    {
+      "name": "transactions",
+      "item": [
+        {
+          "name": "List Transactions (all currencies)",
+          "id": "bd99c5a7-99b6-416f-bc3b-57e064412165",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/transactions?cursor=<string>&start=<dateTime>&end=<dateTime>&time_field=created_date&page_size=50&country=<string>",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "transactions"
+              ],
+              "query": [
+                {
+                  "description": "An opaque string that lets you view a consistent list of transactions.",
+                  "key": "cursor",
+                  "value": "<string>"
+                },
+                {
+                  "description": "Filter transactions created at or after this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z",
+                  "key": "start",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Filter transactions created before this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z",
+                  "key": "end",
+                  "value": "<dateTime>"
+                },
+                {
+                  "description": "Time field to filter by. Accepted values are created_date, modified_date, and attribution_date. When not specified, created_date is used as default.",
+                  "key": "time_field",
+                  "value": "created_date"
+                },
+                {
+                  "description": "Number of transaction to retrieve in each request. When not specified, 50 is used as default.",
+                  "key": "page_size",
+                  "value": "50"
+                },
+                {
+                  "description": "Filter transactions by country. Country is in ISO 3166 Alpha-2 format (case-insensitive). Example: US",
+                  "key": "country",
+                  "value": "<string>"
+                }
+              ]
+            },
+            "description": "Retrieve a list of transactions across all billing accounts (all currencies) visible to your API key. Use pagination via the `cursor` returned in `meta.next` until it is `null`."
+          },
+          "response": [
+            {
+              "id": "d83b24bf-dc9d-4cdd-b2e7-850f34144b66",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/transactions?cursor=<string>&start=<dateTime>&end=<dateTime>&time_field=created_date&page_size=50&country=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "transactions"
+                  ],
+                  "query": [
+                    {
+                      "description": "An opaque string that lets you view a consistent list of transactions.",
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Filter transactions created at or after this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z",
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Filter transactions created before this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z",
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "description": "Time field to filter by. Accepted values are created_date, modified_date, and attribution_date. When not specified, created_date is used as default.",
+                      "key": "time_field",
+                      "value": "created_date"
+                    },
+                    {
+                      "description": "Number of transaction to retrieve in each request. When not specified, 50 is used as default.",
+                      "key": "page_size",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Filter transactions by country. Country is in ISO 3166 Alpha-2 format (case-insensitive). Example: US",
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"meta\": {\n    \"status\": \"<string>\",\n    \"next\": \"<string,null>\",\n    \"previous\": \"<string,null>\"\n  },\n  \"objects\": [\n    {\n      \"id\": \"<string>\",\n      \"category\": \"<string>\",\n      \"status\": \"<string>\",\n      \"created_date\": \"<dateTime>\",\n      \"modified_date\": \"<dateTime>\",\n      \"publisher_customer_id\": \"<string,null>\",\n      \"publisher_organization\": \"<string,null>\",\n      \"publisher_organization_name\": \"<string,null>\",\n      \"commerce_organization\": \"<string,null>\",\n      \"commerce_organization_name\": \"<string,null>\",\n      \"button_id\": \"<string,null>\",\n      \"account_id\": \"<string,null>\",\n      \"btn_ref\": \"<string,null>\",\n      \"pub_ref\": \"<string,null>\",\n      \"button_order_id\": \"<string,null>\",\n      \"order_id\": \"<string,null>\",\n      \"order_total\": 0,\n      \"order_currency\": \"<string,null>\",\n      \"order_line_items\": [\n        {\n          \"identifier\": \"<string,null>\",\n          \"total\": 0,\n          \"amount\": 0,\n          \"quantity\": 0,\n          \"publisher_commission\": 0,\n          \"sku\": \"<string,null>\",\n          \"gtin\": \"<string,null>\",\n          \"category\": \"<string,null>\",\n          \"subcategory1\": \"<string,null>\",\n          \"description\": \"<string,null>\",\n          \"attributes\": null\n        },\n        {\n          \"identifier\": \"<string,null>\",\n          \"total\": 0,\n          \"amount\": 0,\n          \"quantity\": 0,\n          \"publisher_commission\": 0,\n          \"sku\": \"<string,null>\",\n          \"gtin\": \"<string,null>\",\n          \"category\": \"<string,null>\",\n          \"subcategory1\": \"<string,null>\",\n          \"description\": \"<string,null>\",\n          \"attributes\": null\n        }\n      ],\n      \"order_click_channel\": \"<string,null>\",\n      \"order_purchased_date\": \"<string,null-date-time>\",\n      \"validated_date\": \"<string,null-date-time>\",\n      \"attribution_date\": \"<string,null-date-time>\",\n      \"amount\": 0,\n      \"currency\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"advertising_id\": \"<string,null>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"category\": \"<string>\",\n      \"status\": \"<string>\",\n      \"created_date\": \"<dateTime>\",\n      \"modified_date\": \"<dateTime>\",\n      \"publisher_customer_id\": \"<string,null>\",\n      \"publisher_organization\": \"<string,null>\",\n      \"publisher_organization_name\": \"<string,null>\",\n      \"commerce_organization\": \"<string,null>\",\n      \"commerce_organization_name\": \"<string,null>\",\n      \"button_id\": \"<string,null>\",\n      \"account_id\": \"<string,null>\",\n      \"btn_ref\": \"<string,null>\",\n      \"pub_ref\": \"<string,null>\",\n      \"button_order_id\": \"<string,null>\",\n      \"order_id\": \"<string,null>\",\n      \"order_total\": 0,\n      \"order_currency\": \"<string,null>\",\n      \"order_line_items\": [\n        {\n          \"identifier\": \"<string,null>\",\n          \"total\": 0,\n          \"amount\": 0,\n          \"quantity\": 0,\n          \"publisher_commission\": 0,\n          \"sku\": \"<string,null>\",\n          \"gtin\": \"<string,null>\",\n          \"category\": \"<string,null>\",\n          \"subcategory1\": \"<string,null>\",\n          \"description\": \"<string,null>\",\n          \"attributes\": {\n            \"magna_2\": -34300773.30368433,\n            \"non79b\": false,\n            \"minim_4a\": 15568797\n          }\n        },\n        {\n          \"identifier\": \"<string,null>\",\n          \"total\": 0,\n          \"amount\": 0,\n          \"quantity\": 0,\n          \"publisher_commission\": 0,\n          \"sku\": \"<string,null>\",\n          \"gtin\": \"<string,null>\",\n          \"category\": \"<string,null>\",\n          \"subcategory1\": \"<string,null>\",\n          \"description\": \"<string,null>\",\n          \"attributes\": null\n        }\n      ],\n      \"order_click_channel\": \"<string,null>\",\n      \"order_purchased_date\": \"<string,null-date-time>\",\n      \"validated_date\": \"<string,null-date-time>\",\n      \"attribution_date\": \"<string,null-date-time>\",\n      \"amount\": 0,\n      \"currency\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"advertising_id\": \"<string,null>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:25:52.000Z",
+              "updatedAt": "2026-07-28T03:25:52.000Z",
+              "uid": "35240-d83b24bf-dc9d-4cdd-b2e7-850f34144b66"
+            }
+          ],
+          "createdAt": "2026-07-28T03:25:52.000Z",
+          "updatedAt": "2026-07-28T03:25:52.000Z",
+          "uid": "35240-bd99c5a7-99b6-416f-bc3b-57e064412165"
+        }
+      ],
+      "id": "d103f367-7bd5-45c1-906c-07e457d7cbf9",
+      "createdAt": "2026-07-28T03:25:52.000Z",
+      "updatedAt": "2026-07-28T03:25:52.000Z",
+      "uid": "35240-d103f367-7bd5-45c1-906c-07e457d7cbf9"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.usebutton.com/v1/affiliation"
+    }
+  ]
+}

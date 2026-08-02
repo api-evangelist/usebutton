@@ -1,0 +1,25 @@
+# generated: '2026-07-21'
+# method: generated
+# source: API Evangelist enrichment pipeline (enhancements over the harvested spec; original left unmutated)
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Button Shortlink API
+  version: 1.0.0
+extends: openapi/usebutton-shortlink-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: usebutton
+        artifacts:
+          authentication: authentication/usebutton-authentication.yml
+          errors: errors/usebutton-problem-types.yml
+  - target: $.paths['/create/'].post
+    update:
+      tags:
+        - Shortlinks
+  - target: $.paths['/create'].post
+    update:
+      tags:
+        - Shortlinks
+      x-apievangelist-notes: Amazon shortlinks require Button to allowlist your organization; contact your Button representative after configuring.

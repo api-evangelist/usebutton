@@ -1,0 +1,24 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.usebutton.com/changelog (ReadMe changelog; entries carry no dates in the markdown export)
+scheme: developer-portal changelog (ReadMe), undated entries; SDK release notes live per-repo on GitHub releases
+current_version:
+  api: v1 (uri path)
+  android_sdk: 7.2.0 (Maven Central com.usebutton:android-sdk)
+entries:
+  - title: Welcome to the new Button Developers
+    url: https://developer.usebutton.com/changelog/new-developersusebuttoncom
+    highlights:
+      - Relaunched developer portal with full-site search across API reference, guides, and knowledgebase
+      - Feedback channel developers@usebutton.com
+    breaking: false
+  - title: Merchant Library Swift Package Manager support
+    url: https://developer.usebutton.com/changelog/merchant-library-support-for-swift-package-manager
+    highlights:
+      - Button Merchant Library for iOS available via Swift Package Manager as of version 1.3.1 (joining CocoaPods and Carthage)
+    breaking: false
+sdk_release_feeds:
+  - https://github.com/button/button-ios/releases
+  - https://github.com/button/button-android/releases
+  - https://github.com/button/button-merchant-ios/releases
+  - https://github.com/button/button-merchant-android/releases

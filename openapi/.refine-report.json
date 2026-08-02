@@ -1,0 +1,24 @@
+{
+  "provider": "usebutton",
+  "sources": [
+    "usebutton-accounts-api-openapi.yml",
+    "usebutton-brands-api-api-openapi.yml",
+    "usebutton-create-api-openapi.yml",
+    "usebutton-links-api-api-openapi.yml",
+    "usebutton-offers-api-openapi.yml",
+    "usebutton-transactions-api-openapi.yml"
+  ],
+  "outputs": [
+    "usebutton-accounts-api-openapi.yml",
+    "usebutton-brands-api-api-openapi.yml",
+    "usebutton-create-api-openapi.yml",
+    "usebutton-links-api-api-openapi.yml",
+    "usebutton-offers-api-openapi.yml",
+    "usebutton-transactions-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

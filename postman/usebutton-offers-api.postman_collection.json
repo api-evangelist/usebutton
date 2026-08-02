@@ -1,0 +1,156 @@
+{
+  "info": {
+    "_postman_id": "4817808e-02f1-4517-810c-ba643e87260e",
+    "name": "billing-api Accounts Offers API",
+    "description": "The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:25:50.000Z",
+    "updatedAt": "2026-07-28T03:25:50.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-4817808e-02f1-4517-810c-ba643e87260e"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "offers",
+          "item": [
+            {
+              "name": "Offers",
+              "id": "ae84a901-978a-456a-bae1-17a08e721dfe",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"<string>\",\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email_sha256s\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"merchant_id\": \"optional\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/v1/offers",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "offers"
+                  ]
+                },
+                "description": "Obtain real-time rates/offers available to a Publisher user."
+              },
+              "response": [
+                {
+                  "id": "9fae5255-aa49-4c68-8f86-8f468d448cb3",
+                  "name": "200",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: basic",
+                        "key": "Authorization",
+                        "value": "Basic <credentials>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"user_id\": \"<string>\",\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email_sha256s\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"merchant_id\": \"optional\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/offers",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "offers"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"examples\": {\n    \"Result\": {\n      \"value\": \"{\\n  \\\"meta\\\": {\\n    \\\"status\\\": \\\"ok\\\"\\n  },\\n  \\\"object\\\": {\\n    \\\"merchant_offers\\\": [\\n      {\\n        \\\"merchant_id\\\": \\\"org-123\\\",\\n        \\\"offers\\\": [\\n          {\\n            \\\"id\\\": \\\"offer-XXX\\\",\\n            \\\"rate_percent\\\": \\\"4.5\\\",\\n            \\\"display_params\\\": {\\n              \\\"category\\\": \\\"Video Games\\\",\\n              \\\"offer_type\\\": \\\"category\\\"\\n            },\\n            \\\"rank\\\": 1\\n          },\\n          {\\n            \\\"id\\\": \\\"offer-YYY\\\",\\n            \\\"rate_percent\\\": \\\"2\\\",\\n            \\\"display_params\\\": {\\n              \\\"offer_tag\\\": \\\"promotional\\\"\\n            },\\n            \\\"rank\\\": 2\\n          },\\n          {\\n            \\\"id\\\": \\\"offer-ZZZ\\\",\\n            \\\"rate_fixed\\\": \\\"1.00\\\",\\n            \\\"currency\\\": \\\"USD\\\",\\n            \\\"display_params\\\": {},\\n            \\\"rank\\\": 3\\n          }\\n        ]\\n      }\\n    ]\\n  }\\n}\"\n    }\n  }\n}",
+                  "createdAt": "2026-07-28T03:25:51.000Z",
+                  "updatedAt": "2026-07-28T03:25:51.000Z",
+                  "uid": "35240-9fae5255-aa49-4c68-8f86-8f468d448cb3"
+                }
+              ],
+              "createdAt": "2026-07-28T03:25:51.000Z",
+              "updatedAt": "2026-07-28T03:25:51.000Z",
+              "uid": "35240-ae84a901-978a-456a-bae1-17a08e721dfe"
+            }
+          ],
+          "id": "cf6ea6f8-02ba-4d20-89c1-327ccc434827",
+          "createdAt": "2026-07-28T03:25:51.000Z",
+          "updatedAt": "2026-07-28T03:25:51.000Z",
+          "uid": "35240-cf6ea6f8-02ba-4d20-89c1-327ccc434827"
+        }
+      ],
+      "id": "03c24758-68e2-4051-b715-da246cbf6dbd",
+      "createdAt": "2026-07-28T03:25:51.000Z",
+      "updatedAt": "2026-07-28T03:25:51.000Z",
+      "uid": "35240-03c24758-68e2-4051-b715-da246cbf6dbd"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.usebutton.com/v1/affiliation"
+    }
+  ]
+}

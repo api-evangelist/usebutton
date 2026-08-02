@@ -1,0 +1,289 @@
+{
+  "info": {
+    "_postman_id": "01718649-3bc3-4a1d-95ca-7ce27723c161",
+    "name": "billing-api Accounts API",
+    "description": "The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:25:46.000Z",
+    "updatedAt": "2026-07-28T03:25:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-01718649-3bc3-4a1d-95ca-7ce27723c161"
+  },
+  "item": [
+    {
+      "name": "accounts",
+      "item": [
+        {
+          "name": "{account_id}",
+          "item": [
+            {
+              "name": "transactions",
+              "item": [
+                {
+                  "name": "List Transactions by Account (Single Currency)",
+                  "id": "0e932967-e8ed-47ca-948f-0de91c26d39d",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/accounts/:account_id/transactions?cursor=<string>&start=<dateTime>&end=<dateTime>&time_field=attribution_date&page_size=50&country=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "accounts",
+                        ":account_id",
+                        "transactions"
+                      ],
+                      "query": [
+                        {
+                          "description": "An opaque string that lets you view a consistent list of transactions.",
+                          "key": "cursor",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Filter transactions created at or after this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z",
+                          "key": "start",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Filter transactions created before this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z",
+                          "key": "end",
+                          "value": "<dateTime>"
+                        },
+                        {
+                          "description": "Time field to filter by. Accepted values are created_date, modified_date, and attribution_date. When not specified, created_date is used as default.",
+                          "key": "time_field",
+                          "value": "attribution_date"
+                        },
+                        {
+                          "description": "Number of transaction to retrieve in each request. When not specified, 50 is used as default.",
+                          "key": "page_size",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Filter transactions by country. Country is in ISO 3166 Alpha-2 format (case-insensitive). Example: US",
+                          "key": "country",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "286afb18-f132-41d1-9cc1-6b45de9f7475",
+                          "key": "account_id",
+                          "value": "<string>",
+                          "description": "(Required) The specific account (currency) to query."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve a list of transactions within a single billing account (single currency)."
+                  },
+                  "response": [
+                    {
+                      "id": "f5c9f8cd-b786-4557-bb02-8d5620071558",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: basic",
+                            "key": "Authorization",
+                            "value": "Basic <credentials>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/accounts/:account_id/transactions?cursor=<string>&start=<dateTime>&end=<dateTime>&time_field=attribution_date&page_size=50&country=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "accounts",
+                            ":account_id",
+                            "transactions"
+                          ],
+                          "query": [
+                            {
+                              "description": "An opaque string that lets you view a consistent list of transactions.",
+                              "key": "cursor",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Filter transactions created at or after this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z",
+                              "key": "start",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Filter transactions created before this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z",
+                              "key": "end",
+                              "value": "<dateTime>"
+                            },
+                            {
+                              "description": "Time field to filter by. Accepted values are created_date, modified_date, and attribution_date. When not specified, created_date is used as default.",
+                              "key": "time_field",
+                              "value": "attribution_date"
+                            },
+                            {
+                              "description": "Number of transaction to retrieve in each request. When not specified, 50 is used as default.",
+                              "key": "page_size",
+                              "value": "50"
+                            },
+                            {
+                              "description": "Filter transactions by country. Country is in ISO 3166 Alpha-2 format (case-insensitive). Example: US",
+                              "key": "country",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "account_id"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"meta\": {\n    \"status\": \"<string>\",\n    \"next\": \"<string,null>\",\n    \"previous\": \"<string,null>\"\n  },\n  \"objects\": [\n    {\n      \"id\": \"<string>\",\n      \"category\": \"<string>\",\n      \"status\": \"<string>\",\n      \"created_date\": \"<dateTime>\",\n      \"modified_date\": \"<dateTime>\",\n      \"publisher_customer_id\": \"<string,null>\",\n      \"publisher_organization\": \"<string,null>\",\n      \"publisher_organization_name\": \"<string,null>\",\n      \"commerce_organization\": \"<string,null>\",\n      \"commerce_organization_name\": \"<string,null>\",\n      \"button_id\": \"<string,null>\",\n      \"account_id\": \"<string,null>\",\n      \"btn_ref\": \"<string,null>\",\n      \"pub_ref\": \"<string,null>\",\n      \"button_order_id\": \"<string,null>\",\n      \"order_id\": \"<string,null>\",\n      \"order_total\": 0,\n      \"order_currency\": \"<string,null>\",\n      \"order_line_items\": [\n        {\n          \"identifier\": \"<string,null>\",\n          \"total\": 0,\n          \"amount\": 0,\n          \"quantity\": 0,\n          \"publisher_commission\": 0,\n          \"sku\": \"<string,null>\",\n          \"gtin\": \"<string,null>\",\n          \"category\": \"<string,null>\",\n          \"subcategory1\": \"<string,null>\",\n          \"description\": \"<string,null>\",\n          \"attributes\": null\n        },\n        {\n          \"identifier\": \"<string,null>\",\n          \"total\": 0,\n          \"amount\": 0,\n          \"quantity\": 0,\n          \"publisher_commission\": 0,\n          \"sku\": \"<string,null>\",\n          \"gtin\": \"<string,null>\",\n          \"category\": \"<string,null>\",\n          \"subcategory1\": \"<string,null>\",\n          \"description\": \"<string,null>\",\n          \"attributes\": {\n            \"adipisicing_60\": false,\n            \"mollitf\": \"aute voluptate\",\n            \"laborisb\": 85597912.4229573\n          }\n        }\n      ],\n      \"order_click_channel\": \"<string,null>\",\n      \"order_purchased_date\": \"<string,null-date-time>\",\n      \"validated_date\": \"<string,null-date-time>\",\n      \"attribution_date\": \"<string,null-date-time>\",\n      \"amount\": 0,\n      \"currency\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"advertising_id\": \"<string,null>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"category\": \"<string>\",\n      \"status\": \"<string>\",\n      \"created_date\": \"<dateTime>\",\n      \"modified_date\": \"<dateTime>\",\n      \"publisher_customer_id\": \"<string,null>\",\n      \"publisher_organization\": \"<string,null>\",\n      \"publisher_organization_name\": \"<string,null>\",\n      \"commerce_organization\": \"<string,null>\",\n      \"commerce_organization_name\": \"<string,null>\",\n      \"button_id\": \"<string,null>\",\n      \"account_id\": \"<string,null>\",\n      \"btn_ref\": \"<string,null>\",\n      \"pub_ref\": \"<string,null>\",\n      \"button_order_id\": \"<string,null>\",\n      \"order_id\": \"<string,null>\",\n      \"order_total\": 0,\n      \"order_currency\": \"<string,null>\",\n      \"order_line_items\": [\n        {\n          \"identifier\": \"<string,null>\",\n          \"total\": 0,\n          \"amount\": 0,\n          \"quantity\": 0,\n          \"publisher_commission\": 0,\n          \"sku\": \"<string,null>\",\n          \"gtin\": \"<string,null>\",\n          \"category\": \"<string,null>\",\n          \"subcategory1\": \"<string,null>\",\n          \"description\": \"<string,null>\",\n          \"attributes\": null\n        },\n        {\n          \"identifier\": \"<string,null>\",\n          \"total\": 0,\n          \"amount\": 0,\n          \"quantity\": 0,\n          \"publisher_commission\": 0,\n          \"sku\": \"<string,null>\",\n          \"gtin\": \"<string,null>\",\n          \"category\": \"<string,null>\",\n          \"subcategory1\": \"<string,null>\",\n          \"description\": \"<string,null>\",\n          \"attributes\": {\n            \"do_5\": \"minim id\",\n            \"irure9\": false\n          }\n        }\n      ],\n      \"order_click_channel\": \"<string,null>\",\n      \"order_purchased_date\": \"<string,null-date-time>\",\n      \"validated_date\": \"<string,null-date-time>\",\n      \"attribution_date\": \"<string,null-date-time>\",\n      \"amount\": 0,\n      \"currency\": \"<string,null>\",\n      \"country\": \"<string,null>\",\n      \"advertising_id\": \"<string,null>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:25:46.000Z",
+                      "updatedAt": "2026-07-28T03:25:46.000Z",
+                      "uid": "35240-f5c9f8cd-b786-4557-bb02-8d5620071558"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:25:46.000Z",
+                  "updatedAt": "2026-07-28T03:25:46.000Z",
+                  "uid": "35240-0e932967-e8ed-47ca-948f-0de91c26d39d"
+                }
+              ],
+              "id": "ece8827b-198e-409d-a0b5-7c17abff547a",
+              "createdAt": "2026-07-28T03:25:46.000Z",
+              "updatedAt": "2026-07-28T03:25:46.000Z",
+              "uid": "35240-ece8827b-198e-409d-a0b5-7c17abff547a"
+            }
+          ],
+          "id": "8b5b7b27-ac01-4f27-aa27-eb10e6e3b783",
+          "createdAt": "2026-07-28T03:25:46.000Z",
+          "updatedAt": "2026-07-28T03:25:46.000Z",
+          "uid": "35240-8b5b7b27-ac01-4f27-aa27-eb10e6e3b783"
+        },
+        {
+          "name": "List Accounts",
+          "id": "e295330b-b99b-4eff-97ba-5429569c5fda",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/accounts",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "accounts"
+              ]
+            },
+            "description": "Retrieve the list of billing accounts associated with your organization. Your organization will have one billing account per supported currency."
+          },
+          "response": [
+            {
+              "id": "2104a090-7270-48cb-ba8b-42dbefabac74",
+              "name": "OK",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: basic",
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/accounts",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "accounts"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"meta\": {\n    \"status\": \"<string>\",\n    \"next\": \"<string,null>\",\n    \"previous\": \"<string,null>\"\n  },\n  \"objects\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"organization\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"currency\": \"<string>\",\n      \"organization\": \"<string>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:25:46.000Z",
+              "updatedAt": "2026-07-28T03:25:46.000Z",
+              "uid": "35240-2104a090-7270-48cb-ba8b-42dbefabac74"
+            }
+          ],
+          "createdAt": "2026-07-28T03:25:46.000Z",
+          "updatedAt": "2026-07-28T03:25:46.000Z",
+          "uid": "35240-e295330b-b99b-4eff-97ba-5429569c5fda"
+        }
+      ],
+      "id": "747397c5-3dbe-4a08-8584-c6271beb90e5",
+      "createdAt": "2026-07-28T03:25:46.000Z",
+      "updatedAt": "2026-07-28T03:25:46.000Z",
+      "uid": "35240-747397c5-3dbe-4a08-8584-c6271beb90e5"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}",
+        "type": "string"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.usebutton.com/v1/affiliation"
+    }
+  ]
+}

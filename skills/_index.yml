@@ -1,0 +1,15 @@
+generated: '2026-07-21'
+method: generated
+skills:
+  - file: usebutton-offers-to-link.md
+    name: Fetch offers and generate an attributed link
+    api: openapi/usebutton-offers-openapi.yml
+    operations: [offers, generate-a-link]
+  - file: usebutton-billing-reconciliation.md
+    name: Reconcile commissions with the Billing API
+    api: openapi/usebutton-billing-openapi.yml
+    operations: [list-accounts, list-transactions, list-transactions-all]
+  - file: usebutton-creator-shortlinks.md
+    name: Create attributed creator shortlinks
+    api: openapi/usebutton-shortlink-openapi.yml
+    operations: [list-brand-details, generate-a-brand-shortlink, generate-a-shortlink]

@@ -1,0 +1,94 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.usebutton.com/docs/button-webhooks.md, https://developer.usebutton.com/docs/webhook-semantics.md
+type: Webhooks
+spec_type: none
+notes: Button publishes no AsyncAPI document; this artifact captures the documented webhook surface verbatim from the developer docs.
+webhooks:
+  provider: Button
+  transport: HTTPS POST (JSON body) to a publisher-configured URL
+  management: Configured, edited, paused, and resumed in the Button Dashboard (https://app.usebutton.com/webhooks)
+  docs:
+    - https://developer.usebutton.com/docs/button-webhooks
+    - https://developer.usebutton.com/docs/webhook-semantics
+  security:
+    scheme: HMAC-SHA256 signature of the raw request body using a per-webhook secret
+    header: X-Button-Signature
+    secret_location: Button Dashboard, per-webhook secret (https://app.usebutton.com/webhooks)
+    verification_helpers:
+      - library: button-client-node
+        method: isWebhookAuthentic
+        url: https://github.com/button/button-client-node#iswebhookauthentic
+      - library: button-client-python
+        method: is_webhook_authentic
+        url: https://github.com/button/button-client-python#is_webhook_authentic
+      - library: button-client-ruby
+        method: webhook_authentic
+        url: https://github.com/button/button-client-ruby#webhook_authentic
+    receiver_tls: Receiver must present a full TLS chain to a well-known CA; Button's dispatchers do not support the Authority Information Access extension (RFC 5280 4.2.2.1)
+  envelope:
+    fields:
+      - name: request_id
+        description: Unique identifier of a request attempt, even when retrying a failed request (attempt-XXX)
+      - name: id
+        description: Unique identifier for the webhook event (hook-XXX); never reused, safe to dedupe on
+      - name: event_type
+        description: The state the transaction event represents
+      - name: data
+        description: The order details represented as a Transaction object
+    headers:
+      - name: Content-Type
+        value: application/json
+      - name: User-Agent
+        value: Button Webhooks X.X.X
+      - name: X-Button-Signature
+        value: hex HMAC-SHA256 of raw body
+  events:
+    - name: tx-pending
+      mutable: true
+      billable: false
+      description: Transaction created but not final; can still be adjusted or canceled. Commission not yet guaranteed. If the button_order_id already exists in your system, the webhook is reporting an order adjustment.
+    - name: tx-validated
+      mutable: false
+      billable: true
+      description: Finalization period concluded; transaction is immutable, commission in data.amount is final and billable to the Brand.
+    - name: tx-declined
+      mutable: false
+      billable: false
+      description: Transaction cancelled by the user or the Brand; never modified beyond this point and not billable.
+  event_categories:
+    - name: new-user-order
+      description: Commission driven by an order event. No relation to user segment.
+    - name: app-install
+      description: Commission driven by the installation of the Brand application. Filter these out when rewarding purchases - app stores prohibit rewarding users for installs; app-install events skip the pending state.
+  delivery:
+    guarantee: at-least-once; dedupe on webhook id
+    ordering: Ordered per transaction (next event for a transaction only sent after the current one is acknowledged); independent transactions delivered concurrently
+    acknowledgment: Respond 2XX; 200/204 accepted and processed, 202 accepted but processing unsuccessful, 400 invalid (never re-sent), 401 invalid signature (re-sent)
+    retries: Exponential back-off for the first hour, then hourly, for up to 3 days; a 400 response stops retries
+    auto_pause: Endpoint automatically paused when >10% of webhooks attempted in the past hour failed (minimum 5 failures); Button emails the organization, collects new webhooks, and redelivers on resume
+  payload_semantics:
+    - All financial values are integers in the smallest currency unit (100 for $1.00, 500 for £5.00, 100 for JPY 100)
+    - order_total is the order value; amount is the commission amount
+    - Zero-dollar line items (samples, rewards) and negative line items (flat-rate or percentage discounts) appear in order_line_items; do not depend on their identifier/description structure
+    - Button may add fields at any time; validate only the specific fields you need, never the full schema
+  example:
+    id: hook-xxxxxxxxxxxxxxxx
+    event_type: tx-validated
+    request_id: attempt-xxxxxxxxxxxxxxxxx
+    data:
+      id: tx-xxxxxxxxxxxxxxxx
+      status: validated
+      category: new-user-order
+      amount: 100
+      currency: USD
+      order_total: 1000
+      order_currency: USD
+      btn_ref: srctok-xxxxxxxxxxxxxxxx
+      button_order_id: btnorder-xxxxxxxxxxxxxxxx
+      publisher_organization: org-xxxxxxxxxxxxxxxx
+      commerce_organization: org-xxxxxxxxxxxxxxxx
+      account_id: acc-xxxxxxxxxxxxxxxx
+      publisher_customer_id: publisher_user_id_123
+      pub_ref: publisher_pub_ref_123
+      order_click_channel: app

@@ -1,0 +1,32 @@
+generated: '2026-07-21'
+method: searched
+source: OpenAPI definitions embedded in https://developer.usebutton.com/reference/* pages + curl code samples
+docs: https://developer.usebutton.com/reference/getting-started
+summary:
+  types:
+    - http
+  http_schemes:
+    - basic
+  oauth2_flows: []
+  api_key_in: []
+  notes: >-
+    Every Button server-to-server API (Brands, Billing/Affiliation, Links, Shortlink, Offers,
+    Order) authenticates with HTTP Basic auth using the organization's API key as the username
+    and a blank password (curl -u YOUR_API_KEY:). API keys are issued per organization in the
+    Button Dashboard (https://app.usebutton.com). Webhook callbacks are authenticated in the
+    other direction with an HMAC-SHA256 signature over the raw body in the X-Button-Signature
+    header (see asyncapi/usebutton-webhooks.yml).
+schemes:
+  - name: sec0
+    type: http
+    scheme: basic
+    usage: API key as Basic auth username with empty password
+    sources:
+      - openapi/usebutton-brands-openapi.yml
+      - openapi/usebutton-billing-openapi.yml
+      - openapi/usebutton-links-openapi.yml
+      - openapi/usebutton-shortlink-openapi.yml
+      - openapi/usebutton-offers-openapi.yml
+related:
+  webhooks_signature: asyncapi/usebutton-webhooks.yml
+  conventions: conventions/usebutton-conventions.yml

@@ -1,0 +1,54 @@
+# Button Developers Documentation
+
+> Button developer portal with guides and API references for our comprehensive commerce solutions.
+
+## Guides
+- [Getting Started](https://developer.usebutton.com/docs/publishers-getting-started.md)
+- [Get Button Content](https://developer.usebutton.com/docs/get-button-content.md)
+- [Offers API Integration](https://developer.usebutton.com/docs/getting-button-content.md): In this section, we'll walk through the steps needed to render personalized offers to your users using the Button Offers API.
+- [Offers API Best Practices](https://developer.usebutton.com/docs/offers-api-best-practices.md): Below are a few best practices to ensure you are working with the Button Offers API efficiently.
+- [Native App Setup](https://developer.usebutton.com/docs/native-app-setup.md)
+- [Android App Setup](https://developer.usebutton.com/docs/android-application-tap-integration.md): In this section we will walk through the steps needed to integrate your Android application with Button.
+- [iOS App Setup](https://developer.usebutton.com/docs/publishers-ios-app-setup.md): In this section we will walk through the steps needed to integrate your iOS application with Button.
+- [Transaction Notifications](https://developer.usebutton.com/docs/post-purchase-overview.md)
+- [Button Webhooks](https://developer.usebutton.com/docs/button-webhooks.md): Button Webhooks allow you to get notified when a transaction takes place based on traffic you drive to brands from your app. In this section, we'll dive into Button Webhooks and close the loop on the user's e-commerce journey.
+- [Webhook Semantics](https://developer.usebutton.com/docs/webhook-semantics.md): Heres a few tips to ensure you are working with Button Webhooks as efficiently as possible.
+- [Other Resources](https://developer.usebutton.com/docs/other-resources-1.md)
+- [SDK Updates](https://developer.usebutton.com/docs/sdk-updates.md)
+- [Mobile Web Setup](https://developer.usebutton.com/docs/add-merchant-library-mweb.md)
+- [Client-Side Order Reporting](https://developer.usebutton.com/docs/client-side-order-reporting.md): You can report orders to Button's Order API via the Merchant Library using `ButtonMerchant.reportOrder()`.
+- [Reporting Orders S2S](https://developer.usebutton.com/docs/order-api-overview.md): In this section, we'll walk through the steps needed to report orders to Button through our Order API.
+- [Testing your Button integration](https://developer.usebutton.com/docs/manual-brand-testing.md)
+- [Validating Linking and Attribution](https://developer.usebutton.com/docs/sdk-integration-validation.md)
+- [Validating Order Reporting](https://developer.usebutton.com/docs/validating-order-reporting.md)
+- [Android - Reporting User Activity](https://developer.usebutton.com/docs/reporting-events-with-android.md)
+- [iOS - Reporting User Activity](https://developer.usebutton.com/docs/reporting-user-activity-ios.md)
+
+## API Reference
+- [Getting Started with Button API](https://developer.usebutton.com/reference/getting-started.md): This page will help you get started with Button API. You'll be up and running in a jiffy!
+- [List Brand Details](https://developer.usebutton.com/reference/list-brand-details.md): Retrieve details for the Brands partnered with your organization.
+- [Billing API Introduction](https://developer.usebutton.com/reference/billing-api-introduction.md)
+- [List Accounts](https://developer.usebutton.com/reference/list-accounts.md): Retrieve the list of billing accounts associated with your organization. Your organization will have one billing account per supported currency.
+- [List Transactions by Account (Single Currency)](https://developer.usebutton.com/reference/list-transactions.md): Retrieve a list of transactions within a single billing account (single currency).
+- [List All Transactions](https://developer.usebutton.com/reference/list-transactions-all.md): Retrieve a list of transactions across all billing accounts (all currencies) visible to your API key. Use pagination via the `cursor` returned in `meta.next` until it is `null`.
+- [Generate a Link](https://developer.usebutton.com/reference/generate-a-link-2.md): Generate and return a fully attributable Button-wrapped link to the desired Retailer page by passing the full page URL or the affiliate tracking link.
+- [Generate a Shortlink](https://developer.usebutton.com/reference/generate-a-brand-shortlink.md): Generate and return a Button-templated shortlink that redirects to the URL destination specified. This link can then be used by a Creator to link a product and make attributed purchases.
+- [Generate a Button Shortlink for an Amazon URL](https://developer.usebutton.com/reference/generate-a-shortlink.md): Generate and return a Button-templated shortlink that redirects to an Amazon page. This link can then be used by a Creator to link an Amazon product and make attributed purchases.  NOTE: Please reach out to your Button representative after configuring this on your end, as we will need to add your organization to an allowlist to fully enable functionality.
+- [Offers API Introduction](https://developer.usebutton.com/reference/offers-api-introduction.md)
+- [Offers](https://developer.usebutton.com/reference/offers.md): Obtain real-time rates/offers available to a Publisher user.
+
+## Recipes
+- [Content Publisher Example](https://developer.usebutton.com/recipes/content-publisher-example.md)
+- [E-Commerce Site Example](https://developer.usebutton.com/recipes/e-commerce-site-example.md)
+
+## Pages
+- [Adjust x Button – MMP Integration](https://developer.usebutton.com/adjust-x-button-integration.md)
+- [AppsFlyer x Button – MMP Integration](https://developer.usebutton.com/appsflyer-x-button.md)
+- [Branch x Button – MMP Integration](https://developer.usebutton.com/branch-x-button-integration.md)
+- [Button Browser](https://developer.usebutton.com/button-browser.md)
+- [Kochava x Button – MMP Integration](https://developer.usebutton.com/kochava-x-button-integration.md)
+- [Singular x Button – MMP Integration](https://developer.usebutton.com/singular-x-button-integration.md)
+
+## Changelog
+- [Welcome to the new Button Developers](https://developer.usebutton.com/changelog/new-developersusebuttoncom.md)
+- [Merchant Library Swift Package Manager support](https://developer.usebutton.com/changelog/merchant-library-support-for-swift-package-manager.md)

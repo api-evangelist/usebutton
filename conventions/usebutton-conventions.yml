@@ -1,0 +1,66 @@
+generated: '2026-07-21'
+method: searched
+source: https://developer.usebutton.com/reference/* and https://developer.usebutton.com/docs/* (ReadMe portal), OpenAPI definitions embedded in the reference pages
+authentication:
+  style: HTTP Basic with the organization API key as username and blank password (curl -u YOUR_API_KEY:)
+  artifact: authentication/usebutton-authentication.yml
+idempotency:
+  supported: false
+  notes: >-
+    No idempotency-key header or parameter is documented anywhere in the Button API reference.
+    Webhook consumers are told to dedupe on the webhook `id` field (at-least-once delivery), and
+    order updates are modeled as full-state POSTs to /v1/order/<order_id>, but there is no
+    documented request-idempotency contract for API calls.
+pagination:
+  style: cursor
+  request_params:
+    - cursor (opaque string)
+    - page_size (default 50)
+  response_fields:
+    - meta.next (URL containing the next cursor; null when exhausted)
+    - meta.previous
+  docs: https://developer.usebutton.com/reference/list-transactions-all
+envelope:
+  success: 'meta.status: "ok" with the payload under `object` (single) or `objects` (list)'
+  error: 'meta.status: "error" with `error.message`, optional `error.type` (e.g. NoMerchantApproval, NoMerchantLinkSupport) and optional `error.details`'
+  artifact: errors/usebutton-problem-types.yml
+money:
+  convention: All financial values are integers in the smallest currency unit (100 = $1.00; -100 = -$1.00; 500 = £5.00)
+  currency_codes: ISO 4217 three-letter codes
+dates:
+  convention: ISO-8601 / RFC 3339 timestamps (e.g. 2024-11-18T19:49:17Z); date filters accept RFC 3339 via start/end query params with time_field selector (created_date, modified_date, attribution_date)
+identifiers:
+  style: type-prefixed IDs
+  prefixes:
+    - 'org- (organization: Publisher or Brand)'
+    - 'acc- (billing account, one per currency)'
+    - 'tx- (transaction)'
+    - 'btnorder- (Button order)'
+    - 'srctok- (Button attribution token, btn_ref)'
+    - 'hook- (webhook event)'
+    - 'attempt- (webhook delivery attempt)'
+    - 'offer- (offer)'
+    - 'ratecard- (rate card)'
+versioning:
+  scheme: uri-path (/v1/); ReadMe API definitions carry info.version "4"
+rate_limits:
+  documented:
+    - api: Offers API
+      limit: 5,000 requests per minute
+      source: https://developer.usebutton.com/reference/offers
+  signaling: No rate-limit response headers documented
+request_tracing:
+  documented: false
+webhooks:
+  signature_header: X-Button-Signature (HMAC-SHA256 of raw body with per-webhook secret)
+  artifact: asyncapi/usebutton-webhooks.yml
+user_identifiers:
+  - btn_pub_user: publisher's stable user ID, 1-255 ASCII chars in [0x21-0x7E], echoed back in webhooks
+  - btn_pub_ref: publisher reference (click/campaign ID), max 512 chars, echoed back in webhooks and reporting
+  - email_sha256: SHA-256 of the lowercased, trimmed email as 64-char hex
+  - device_ids: IDFA (iOS) / GAID (Android); Offers API accepts at most 10 combined identifiers (email hashes + device IDs)
+cross_links:
+  errors: errors/usebutton-problem-types.yml
+  lifecycle: lifecycle/usebutton-lifecycle.yml
+  authentication: authentication/usebutton-authentication.yml
+  sandbox: sandbox/usebutton-sandbox.yml

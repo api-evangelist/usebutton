@@ -1,0 +1,40 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/ (five specs), https://developer.usebutton.com/docs/button-webhooks.md, https://developer.usebutton.com/docs/order-api-overview.md
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: No oauth2 security schemes; all APIs use HTTP Basic with API key as username
+  - id: oidc
+    conforms: false
+    evidence: /.well-known/openid-configuration returns 404 on all hosts
+  - id: http-basic-auth
+    conforms: true
+    evidence: openapi securitySchemes type http/basic across all five specs
+  - id: cursor-pagination
+    conforms: true
+    evidence: Billing API paginates with opaque cursor + meta.next/meta.previous until null
+  - id: iso-4217-currency
+    conforms: true
+    evidence: Three-letter ISO 4217 currency codes documented for transactions, offers, and orders
+  - id: iso-8601-dates
+    conforms: true
+    evidence: ISO-8601/RFC 3339 timestamps documented on transactions and order reporting; RFC 3339 date filters
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: Errors use a proprietary meta/error envelope, not application/problem+json
+  - id: hmac-webhook-signatures
+    conforms: true
+    evidence: X-Button-Signature is an HMAC-SHA256 hex digest of the raw webhook body with a per-webhook secret
+  - id: idempotency
+    conforms: false
+    evidence: No idempotency-key contract documented; webhook consumers dedupe on webhook id
+  - id: json-api
+    conforms: false
+    evidence: Proprietary meta/object(s) envelope, not JSON:API
+  - id: scim
+    conforms: false
+    evidence: No SCIM surface; SAML SSO provider setup is documented for dashboard access only
+  - id: saml-sso
+    conforms: true
+    evidence: SAML SSO Provider Setup guide on the developer portal (dashboard access)

@@ -1,0 +1,34 @@
+# generated: '2026-07-21'
+# method: generated
+# source: API Evangelist enrichment pipeline (enhancements over the harvested spec; original left unmutated)
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Button Billing API
+  version: 1.0.0
+extends: openapi/usebutton-billing-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: usebutton
+        artifacts:
+          authentication: authentication/usebutton-authentication.yml
+          conventions: conventions/usebutton-conventions.yml
+          data-model: data-model/usebutton-data-model.yml
+      x-pagination:
+        style: cursor
+        params: [cursor, page_size]
+        next: meta.next
+  - target: $.paths['/accounts'].get
+    update:
+      tags:
+        - Billing
+  - target: $.paths['/accounts/{account_id}/transactions'].get
+    update:
+      tags:
+        - Billing
+  - target: $.paths['/transactions'].get
+    update:
+      tags:
+        - Billing
+      x-apievangelist-notes: Paginate with the cursor in meta.next until it is null; all monetary fields are integers in the smallest currency unit.

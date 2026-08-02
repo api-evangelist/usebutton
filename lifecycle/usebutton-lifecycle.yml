@@ -1,0 +1,16 @@
+generated: '2026-07-21'
+method: searched
+source: https://status.usebutton.com (HTTP 200), https://developer.usebutton.com/changelog, OpenAPI definitions in the developer reference
+versioning:
+  scheme: uri-path
+  current: v1
+  notes: All server-to-server endpoints live under /v1/ (api.usebutton.com/v1/*, pubapi.usebutton.com/v1/offers); the ReadMe API definitions carry an internal info.version of "4".
+deprecation:
+  policy_url: null
+  sunset_header: false
+  notes: No public deprecation policy or Sunset/Deprecation (RFC 8594) header support documented.
+sla:
+  url: null
+status_page: https://status.usebutton.com
+changelog: https://developer.usebutton.com/changelog
+deprecated_operations: []

@@ -1,0 +1,23 @@
+# generated: '2026-07-21'
+# method: generated
+# source: API Evangelist enrichment pipeline (enhancements over the harvested spec; original left unmutated)
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Button Brands API
+  version: 1.0.0
+extends: openapi/usebutton-brands-openapi.yml
+actions:
+  - target: $.info
+    update:
+      x-apievangelist:
+        provider: usebutton
+        artifacts:
+          authentication: authentication/usebutton-authentication.yml
+          errors: errors/usebutton-problem-types.yml
+          conventions: conventions/usebutton-conventions.yml
+      description: Retrieve details for the Brands partnered with your organization via Button, including app schemes, supported hostnames, and commission terms and conditions.
+  - target: $.paths['/'].get
+    update:
+      tags:
+        - Brands
+      x-apievangelist-notes: Static brand metadata; Button advises against calling this in the critical path of routing a user to a Brand.

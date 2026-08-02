@@ -1,8 +1,26 @@
 aid: usebutton
-name: Usebutton
-description: 'Usebutton is a company surfaced as a portfolio company of norwest-venture-partners, slow-ventures
-  and added to the API Evangelist network as a stub for enrichment. Sector: unknown. This profile is a
-  lead awaiting the enrichment pipeline.'
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/usebutton.png
+name: Button
+description: >-
+  Button (usebutton.com) is a mobile commerce technology company whose platform connects
+  Publishers and Brands in a two-sided marketplace: publishers deep-link their users into
+  retailer apps and sites with full attribution, and brands acquire and re-engage customers
+  through those optimized journeys. Its server-to-server APIs cover personalized Offers,
+  attributed Link and Shortlink generation (including Amazon creator links), Brand partnership
+  details, Billing/affiliation transaction reporting, and Order reporting, complemented by
+  Publisher SDKs, Merchant Libraries, and HMAC-signed transaction webhooks.
 url: https://raw.githubusercontent.com/api-evangelist/usebutton/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,18 +29,235 @@ x-backed-by:
 - slow-ventures
 x-tier: stub
 x-tier-reason: portfolio-lead
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 30
+  pass: local-v1
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
-- Company
-- Unknown
-apis: []
+- Commerce
+- Mobile Commerce
+- Affiliate
+- Attribution
+- Deep Linking
+- Offers
+- Publishers
+- Retail
+apis:
+- name: Button Order API
+  description: >-
+    Brands report new orders, order updates (including partial returns), and cancellations to Button server-to-server,
+    passing the Button Attribution Token (btn_ref) captured by the Merchant Library; documented in the
+    guides with create (POST /v1/order), update (POST /v1/order/{order_id}), and cancel (DELETE /v1/order/{order_id}).
+  humanURL: https://developer.usebutton.com/docs/order-api-overview
+  baseURL: https://api.usebutton.com/v1/order
+  tags:
+  - Orders
+  - Brands
+  properties:
+  - type: Documentation
+    url: https://developer.usebutton.com/docs/order-api-overview
+- aid: usebutton:usebutton-accounts-api
+  name: Button Accounts API
+  description: The Accounts API from Button — 2 operation(s) for accounts.
+  humanURL: https://developer.usebutton.com/reference/list-brand-details
+  baseURL: https://api.usebutton.com/v1/brands
+  tags:
+  - Accounts
+  properties:
+  - type: OpenAPI
+    url: openapi/usebutton-accounts-api-openapi.yml
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/list-brand-details
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/billing-api-introduction
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/generate-a-link-2
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/generate-a-brand-shortlink
+  - type: Documentation
+    url: https://developer.usebutton.com/docs/getting-button-content
+- aid: usebutton:usebutton-brands-api-api
+  name: Button Brands Api API
+  description: The Brands Api API from Button — 1 operation(s) for brands api.
+  humanURL: https://developer.usebutton.com/reference/list-brand-details
+  baseURL: https://api.usebutton.com/v1/brands
+  tags:
+  - Brands Api
+  properties:
+  - type: OpenAPI
+    url: openapi/usebutton-brands-api-api-openapi.yml
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/list-brand-details
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/billing-api-introduction
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/generate-a-link-2
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/generate-a-brand-shortlink
+  - type: Documentation
+    url: https://developer.usebutton.com/docs/getting-button-content
+- aid: usebutton:usebutton-create-api
+  name: Button Create API
+  description: The Create API from Button — 2 operation(s) for create.
+  humanURL: https://developer.usebutton.com/reference/list-brand-details
+  baseURL: https://api.usebutton.com/v1/brands
+  tags:
+  - Create
+  properties:
+  - type: OpenAPI
+    url: openapi/usebutton-create-api-openapi.yml
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/list-brand-details
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/billing-api-introduction
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/generate-a-link-2
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/generate-a-brand-shortlink
+  - type: Documentation
+    url: https://developer.usebutton.com/docs/getting-button-content
+- aid: usebutton:usebutton-links-api-api
+  name: Button Links Api API
+  description: The Links Api API from Button — 1 operation(s) for links api.
+  humanURL: https://developer.usebutton.com/reference/list-brand-details
+  baseURL: https://api.usebutton.com/v1/brands
+  tags:
+  - Links Api
+  properties:
+  - type: OpenAPI
+    url: openapi/usebutton-links-api-api-openapi.yml
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/list-brand-details
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/billing-api-introduction
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/generate-a-link-2
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/generate-a-brand-shortlink
+  - type: Documentation
+    url: https://developer.usebutton.com/docs/getting-button-content
+- aid: usebutton:usebutton-offers-api
+  name: Button Offers API
+  description: The Offers API from Button — 1 operation(s) for offers.
+  humanURL: https://developer.usebutton.com/reference/list-brand-details
+  baseURL: https://api.usebutton.com/v1/brands
+  tags:
+  - Offers
+  properties:
+  - type: OpenAPI
+    url: openapi/usebutton-offers-api-openapi.yml
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/list-brand-details
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/billing-api-introduction
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/generate-a-link-2
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/generate-a-brand-shortlink
+  - type: Documentation
+    url: https://developer.usebutton.com/docs/getting-button-content
+- aid: usebutton:usebutton-transactions-api
+  name: Button Transactions API
+  description: The Transactions API from Button — 1 operation(s) for transactions.
+  humanURL: https://developer.usebutton.com/reference/list-brand-details
+  baseURL: https://api.usebutton.com/v1/brands
+  tags:
+  - Transactions
+  properties:
+  - type: OpenAPI
+    url: openapi/usebutton-transactions-api-openapi.yml
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/list-brand-details
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/billing-api-introduction
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/generate-a-link-2
+  - type: Documentation
+    url: https://developer.usebutton.com/reference/generate-a-brand-shortlink
+  - type: Documentation
+    url: https://developer.usebutton.com/docs/getting-button-content
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: PostmanWorkspace
+  url: https://www.postman.com/kinlaneapi/button/overview
 - type: Website
   url: https://usebutton.com
+- type: DeveloperPortal
+  url: https://developer.usebutton.com
+- type: Documentation
+  url: https://developer.usebutton.com/docs
+- type: APIReference
+  url: https://developer.usebutton.com/reference
+- type: GettingStarted
+  url: https://developer.usebutton.com/reference/getting-started
+- type: Support
+  url: https://www.usebutton.com/contact-us
+- type: Blog
+  url: https://www.usebutton.com/blog
+- type: GitHubOrganization
+  url: https://github.com/button
+- type: Login
+  url: https://app.usebutton.com/account/login
+- type: TermsOfService
+  url: https://www.usebutton.com/support/terms-of-service
+- type: PrivacyPolicy
+  url: https://www.usebutton.com/support/privacy-policy
+- type: StatusPage
+  url: https://status.usebutton.com
+- type: ChangeLog
+  url: changelog/usebutton-changelog.yml
+- type: ChangeLog
+  url: https://developer.usebutton.com/changelog
+- type: Lifecycle
+  url: lifecycle/usebutton-lifecycle.yml
+- type: Authentication
+  url: authentication/usebutton-authentication.yml
+- type: Conventions
+  url: conventions/usebutton-conventions.yml
+- type: ErrorCatalog
+  url: errors/usebutton-problem-types.yml
+- type: Webhooks
+  url: asyncapi/usebutton-webhooks.yml
+- type: Sandbox
+  url: sandbox/usebutton-sandbox.yml
+- type: Packages
+  url: packages/usebutton-packages.yml
+- type: SDKs
+  url: packages/usebutton-packages.yml
+- type: MCPServer
+  url: mcp/usebutton-mcp.yml
+- type: LLMsTxt
+  url: llms/usebutton-llms.txt
+- type: WellKnown
+  url: well-known/usebutton-well-known.yml
+- type: Conformance
+  url: conformance/usebutton-conformance.yml
+- type: Compliance
+  url: https://www.usebutton.com/support/security
+- type: Security
+  url: https://www.usebutton.com/support/security
+- type: DataModel
+  url: data-model/usebutton-data-model.yml
+- type: AgentSkill
+  name: Fetch offers and generate an attributed link
+  url: skills/usebutton-offers-to-link.md
+- type: AgentSkill
+  name: Reconcile commissions with the Billing API
+  url: skills/usebutton-billing-reconciliation.md
+- type: AgentSkill
+  name: Create attributed creator shortlinks
+  url: skills/usebutton-creator-shortlinks.md
+- type: TrustCenter
+  url: security/usebutton-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/usebutton-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/usebutton-domain-security.yml
