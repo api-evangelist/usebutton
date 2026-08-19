@@ -1,0 +1,36 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "billing-api Accounts Brands Api API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Brands Api",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Brand Details",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usebutton.com/v1/affiliation/"
+          },
+          "docs": "Retrieve details for the Brands partnered with your organization."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

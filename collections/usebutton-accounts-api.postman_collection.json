@@ -1,0 +1,283 @@
+{
+  "item": [
+    {
+      "id": "c177262a-3072-450f-beff-43602fd795bc",
+      "name": "Accounts",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "23b22ec0-9edf-4098-91f7-da8cb6df6699",
+          "name": "List Accounts",
+          "request": {
+            "name": "List Accounts",
+            "description": {
+              "content": "Retrieve the list of billing accounts associated with your organization. Your organization will have one billing account per supported currency.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7910c8f8-c521-4860-9be0-beb47f693e83",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"status\": \"ok\"\n  },\n  \"objects\": [\n    {\n      \"id\": \"acc-xxx\",\n      \"name\": \"Button Account\",\n      \"currency\": \"USD\",\n      \"organization\": \"org-xxx\"\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "52b3a2a9-31f8-4968-8c69-a01628b05c99",
+          "name": "List Transactions by Account (Single Currency)",
+          "request": {
+            "name": "List Transactions by Account (Single Currency)",
+            "description": {
+              "content": "Retrieve a list of transactions within a single billing account (single currency).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "accounts",
+                ":account_id",
+                "transactions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "cursor",
+                  "value": "<string>",
+                  "description": "An opaque string that lets you view a consistent list of transactions."
+                },
+                {
+                  "disabled": false,
+                  "key": "start",
+                  "value": "<dateTime>",
+                  "description": "Filter transactions created at or after this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z"
+                },
+                {
+                  "disabled": false,
+                  "key": "end",
+                  "value": "<dateTime>",
+                  "description": "Filter transactions created before this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z"
+                },
+                {
+                  "disabled": false,
+                  "key": "time_field",
+                  "value": "<string>",
+                  "description": "Time field to filter by. Accepted values are created_date, modified_date, and attribution_date. When not specified, created_date is used as default."
+                },
+                {
+                  "disabled": false,
+                  "key": "page_size",
+                  "value": "50",
+                  "description": "Number of transaction to retrieve in each request. When not specified, 50 is used as default."
+                },
+                {
+                  "disabled": false,
+                  "key": "country",
+                  "value": "<string>",
+                  "description": "Filter transactions by country. Country is in ISO 3166 Alpha-2 format (case-insensitive). Example: US"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "account_id",
+                  "description": "(Required) The specific account (currency) to query."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "407121cf-c270-4e10-931f-ef90273c4bac",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "accounts",
+                    ":account_id",
+                    "transactions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "cursor",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "start",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "end",
+                      "value": "<dateTime>"
+                    },
+                    {
+                      "key": "time_field",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "page_size",
+                      "value": "50"
+                    },
+                    {
+                      "key": "country",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "account_id",
+                      "description": "(Required) The specific account (currency) to query."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"meta\": {\n    \"status\": \"ok\",\n    \"next\": \"https://api.usebutton.com/v1/affiliation/accounts/acc-xxx/transactions?cursor=cXw\",\n    \"previous\": null\n  },\n  \"objects\": [\n    {\n      \"publisher_customer_id\": \"1111-3333-4444-999999999999\",\n      \"publisher_organization\": \"org-YYY\",\n      \"publisher_organization_name\": \"Publisher Company Name\",\n      \"commerce_organization\": \"org-XXX\",\n      \"commerce_organization_name\": \"Brand Company Name\",\n      \"button_id\": \"static\",\n      \"account_id\": \"acc-XXX\",\n      \"btn_ref\": \"srctok-XXX\",\n      \"pub_ref\": \"Publisher Reference String\",\n      \"button_order_id\": \"btnorder-XXX\",\n      \"order_id\": null,\n      \"order_total\": 6000,\n      \"order_currency\": \"USD\",\n      \"order_line_items\": [\n        {\n          \"identifier\": \"sku-1234\",\n          \"total\": 6000,\n          \"amount\": 2000,\n          \"quantity\": 3,\n          \"publisher_commission\": 600,\n          \"sku\": \"sku-1234\",\n          \"gtin\": \"00400000000001\",\n          \"category\": \"Clothes\",\n          \"subcategory1\": \"Kids\",\n          \"description\": \"T-shirts\",\n          \"attributes\": {\n            \"size\": \"M\"\n          }\n        }\n      ],\n      \"order_click_channel\": \"app\",\n      \"category\": \"new-user-order\",\n      \"id\": \"tx-XXX\",\n      \"created_date\": \"2024-11-18T19:49:17Z\",\n      \"modified_date\": \"2024-11-18T19:49:17Z\",\n      \"attribution_date\": \"2024-11-18T19:49:17Z\",\n      \"amount\": 600,\n      \"currency\": \"USD\",\n      \"country\": \"us\",\n      \"status\": \"pending\",\n      \"advertising_id\": null\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.usebutton.com/v1/affiliation",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "40b2c8b0-9f99-4e30-9cf0-f3de2fd7925a",
+    "name": "billing-api Accounts API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).",
+      "type": "text/plain"
+    }
+  }
+}

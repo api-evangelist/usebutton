@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "billing-api Accounts Links Api API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Links Api",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a Link",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usebutton.com/v1/affiliation/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate and return a fully attributable Button-wrapped link to the desired Retailer page by passing the full page URL or the affiliate tracking link."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

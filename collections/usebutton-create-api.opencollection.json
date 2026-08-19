@@ -1,0 +1,55 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "billing-api Accounts Create API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Create",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate a Shortlink",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usebutton.com/v1/affiliation/create/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate and return a Button-templated shortlink that redirects to the URL destination specified. This link can then be used by a Creator to link a product and make attributed purchases."
+        },
+        {
+          "info": {
+            "name": "Generate a Button Shortlink for an Amazon URL",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usebutton.com/v1/affiliation/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate and return a Button-templated shortlink that redirects to an Amazon page. This link can then be used by a Creator to link an Amazon product and make attributed purchases.\n\nNOTE: Please reach out to your Button representative after configuring this on your end, as we will need to add your organization to an allowlist to fully enable functionality."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

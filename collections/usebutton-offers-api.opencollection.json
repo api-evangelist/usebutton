@@ -1,0 +1,40 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "billing-api Accounts Offers API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Offers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Offers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.usebutton.com/v1/affiliation/v1/offers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Obtain real-time rates/offers available to a Publisher user."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

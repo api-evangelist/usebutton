@@ -1,33 +1,44 @@
 generated: '2026-07-21'
 method: derived
 status: candidate
-source: openapi/ (operations aggregated from the five Button API specs); no official Button MCP server found on the developer portal, GitHub org (github.com/button), or npm
+source: openapi/ (operations aggregated from the five Button API specs); no official Button MCP server
+  found on the developer portal, GitHub org (github.com/button), or npm
 server:
   name: usebutton
   transport: http
   url: null
 tools:
-  - name: list_brand_details
-    description: Retrieve details for the Brands partnered with your organization (terms, supported hostnames, app schemes, commission windows).
-    source_operation: openapi/usebutton-brands-openapi.yml#list-brand-details
-  - name: list_accounts
-    description: List billing accounts for your organization (one per supported currency).
-    source_operation: openapi/usebutton-billing-openapi.yml#list-accounts
-  - name: list_transactions
-    description: List transactions within a single billing account (single currency), cursor-paginated with date filters.
-    source_operation: openapi/usebutton-billing-openapi.yml#list-transactions
-  - name: list_transactions_all
-    description: List transactions across all billing accounts (all currencies) visible to the API key, cursor-paginated.
-    source_operation: openapi/usebutton-billing-openapi.yml#list-transactions-all
-  - name: generate_link
-    description: Generate a fully attributable Button-wrapped link for a Retailer page URL or affiliate tracking link.
-    source_operation: openapi/usebutton-links-openapi.yml#generate-a-link
-  - name: generate_brand_shortlink
-    description: Generate a Button-templated shortlink redirecting to a Brand URL for creator attribution.
-    source_operation: openapi/usebutton-shortlink-openapi.yml#generate-a-brand-shortlink
-  - name: generate_amazon_shortlink
-    description: Generate a Button shortlink for an Amazon URL (requires Button allowlisting).
-    source_operation: openapi/usebutton-shortlink-openapi.yml#generate-a-shortlink
-  - name: get_offers
-    description: Obtain real-time rates/offers available to a Publisher user (rate limited at 5,000 requests/minute).
-    source_operation: openapi/usebutton-offers-openapi.yml#offers
+- name: list_brand_details
+  description: Retrieve details for the Brands partnered with your organization (terms, supported hostnames,
+    app schemes, commission windows).
+  source_operation: openapi/usebutton-brands-openapi.yml#list-brand-details
+- name: list_accounts
+  description: List billing accounts for your organization (one per supported currency).
+  source_operation: openapi/usebutton-billing-openapi.yml#list-accounts
+- name: list_transactions
+  description: List transactions within a single billing account (single currency), cursor-paginated with
+    date filters.
+  source_operation: openapi/usebutton-billing-openapi.yml#list-transactions
+- name: list_transactions_all
+  description: List transactions across all billing accounts (all currencies) visible to the API key,
+    cursor-paginated.
+  source_operation: openapi/usebutton-billing-openapi.yml#list-transactions-all
+- name: generate_link
+  description: Generate a fully attributable Button-wrapped link for a Retailer page URL or affiliate
+    tracking link.
+  source_operation: openapi/usebutton-links-openapi.yml#generate-a-link
+- name: generate_brand_shortlink
+  description: Generate a Button-templated shortlink redirecting to a Brand URL for creator attribution.
+  source_operation: openapi/usebutton-shortlink-openapi.yml#generate-a-brand-shortlink
+- name: generate_amazon_shortlink
+  description: Generate a Button shortlink for an Amazon URL (requires Button allowlisting).
+  source_operation: openapi/usebutton-shortlink-openapi.yml#generate-a-shortlink
+- name: get_offers
+  description: Obtain real-time rates/offers available to a Publisher user (rate limited at 5,000 requests/minute).
+  source_operation: openapi/usebutton-offers-openapi.yml#offers
+deployment:
+  mode: none
+  verified: derived
+  tools: 8
+  checked: '2026-08-12'
+  source: catalog MCP census

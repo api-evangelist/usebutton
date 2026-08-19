@@ -1,0 +1,252 @@
+{
+  "item": [
+    {
+      "id": "3c182377-3448-46aa-b910-903c2997b927",
+      "name": "Brands Api",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2b393435-c81e-426d-b5e5-1daa6f292a08",
+          "name": "List Brand Details",
+          "request": {
+            "name": "List Brand Details",
+            "description": {
+              "content": "Retrieve details for the Brands partnered with your organization.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0482006-64f3-43ac-a6a9-6fa5882e7300",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"meta\\\": {\\n        \\\"status\\\": \\\"ok\\\"\\n    },\\n    \\\"object\\\": {\\n        \\\"id\\\": \\\"org-3eec44df0966f6f0\\\",\\n        \\\"name\\\": \\\"Brand123\\\",\\n        \\\"is_live_ready\\\": true,\\n        \\\"description\\\": \\\"Brand description\\\",\\n        \\\"urls\\\": {\\n            \\\"homepage\\\": \\\"https://brandhomepage.com\\\"\\n        },\\n        \\\"icon_url\\\": \\\"https://button.imgix.net/org-3eec44df0966f6f0/icon/f2efde260ddabd11.png\\\",\\n        \\\"apps\\\": [\\n            {\\n              \\\"os\\\": \\\"ios\\\",\\n              \\\"scheme\\\": \\\"brandapp://\\\"\\n            }\\n          ],\\n        \\\"supported_hostnames\\\": [\\\"brand123.com\\\", \\\"brand123homepage.com\\\", \\\"us.brand123homepage.com\\\"],\\n        \\\"subdomain\\\": \\\"brandapp\\\",\\n        \\\"terms_and_conditions\\\": {\\n            \\\"reporting_window_days\\\": 0,\\n            \\\"finalization_window_minutes\\\": 129600,\\n            \\\"additional_terms\\\": null,\\n            \\\"exclusion_details\\\": \\\"Commissions are not valid on taxes, delivery fees, promotions, or payments made with bitcoin.\\\",\\n            \\\"coupons_allowed\\\": false,\\n            \\\"gift_cards_allowed\\\": false\\n        }\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80b35718-eea0-4cec-9a2f-df930a3368d7",
+              "name": "400",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"meta\\\": {\\n        \\\"status\\\": \\\"error\\\"\\n    },\\n    \\\"error\\\": {\\n        \\\"message\\\": \\\"Invalid Brand ID: org-xxx\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "11046fe4-b7f7-4afd-b40b-16bac99f5b91",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"meta\\\": {\\n        \\\"status\\\": \\\"error\\\"\\n    },\\n    \\\"error\\\": {\\n        \\\"message\\\": \\\"The calling organization must be a publisher to access this endpoint.\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e4f88431-3e59-4d92-a74a-9043624dc5a8",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"meta\\\": {\\n        \\\"status\\\": \\\"error\\\"\\n    },\\n    \\\"error\\\": {\\n        \\\"message\\\": \\\"Could not find org-262d6eae90030df9\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.usebutton.com/v1/affiliation",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e7f579ce-a812-443a-b647-da1de5bea25d",
+    "name": "billing-api Accounts Brands Api API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,451 @@
+{
+  "item": [
+    {
+      "id": "91016217-380f-4475-8582-5451e0b46188",
+      "name": "Create",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "0f32b345-3a71-43ac-aad6-05257a5c582d",
+          "name": "Generate a Shortlink",
+          "request": {
+            "name": "Generate a Shortlink",
+            "description": {
+              "content": "Generate and return a Button-templated shortlink that redirects to the URL destination specified. This link can then be used by a Creator to link a product and make attributed purchases.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "create",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"link_url\": \"<string>\",\n  \"btn_pub_ref\": \"<string>\",\n  \"btn_pub_user\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "ace0ce05-d915-423d-9502-3e5e7607d05f",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "create",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"link_url\": \"<string>\",\n  \"btn_pub_ref\": \"<string>\",\n  \"btn_pub_user\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"meta\\\": {\\n    \\\"status\\\": \\\"ok\\\"\\n  },\\n  \\\"object\\\":{\\n      \\\"short_url\\\": \\\"https://o.bttn.io/1234ABCDE\\\",\\n      \\\"url\\\": \\\"https://r.bttn.io?btn_url=https%3A%2F%2Fmybrand.com%2Fproducts%3Ftag%3Dtag12345&btn_pub_user=your-user-id&btn_pub_ref=your-publisher-reference&btn_ref=org-XXX\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15ff11ef-f198-4910-a2fe-1173b5fc5577",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "create",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"link_url\": \"<string>\",\n  \"btn_pub_ref\": \"<string>\",\n  \"btn_pub_user\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"meta\\\": {\\n        \\\"status\\\": \\\"error\\\"\\n    },\\n    \\\"error\\\": {\\n        \\\"message\\\": \\\"Invalid api_key\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6bd338f7-3f5e-4ffb-8906-a7699a616c49",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "create",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"link_url\": \"<string>\",\n  \"btn_pub_ref\": \"<string>\",\n  \"btn_pub_user\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"meta\\\": {\\n        \\\"status\\\": \\\"error\\\"\\n    },\\n    \\\"error\\\": {\\n        \\\"message\\\": \\\"could not create shortlink\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "98742124-fbdf-4179-a890-36fde075e555",
+          "name": "Generate a Button Shortlink for an Amazon URL",
+          "request": {
+            "name": "Generate a Button Shortlink for an Amazon URL",
+            "description": {
+              "content": "Generate and return a Button-templated shortlink that redirects to an Amazon page. This link can then be used by a Creator to link an Amazon product and make attributed purchases.\n\nNOTE: Please reach out to your Button representative after configuring this on your end, as we will need to add your organization to an allowlist to fully enable functionality.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "create"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"link_url\": \"<string>\",\n  \"btn_pub_user\": \"<string>\",\n  \"btn_pub_ref\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "518cb0ae-12f8-43f0-aaaa-3639f37632fb",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"link_url\": \"<string>\",\n  \"btn_pub_user\": \"<string>\",\n  \"btn_pub_ref\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"meta\\\": {\\n    \\\"status\\\": \\\"ok\\\"\\n  },\\n  \\\"object\\\":{\\n      \\\"short_url\\\": \\\"https://amzlink.to/1234ABCDE\\\",\\n      \\\"url\\\": \\\"https://r.amzlink.to?btn_url=https%3A%2F%2Famazon.com%2Fproducts%3Ftag%3Dtag12345&btn_pub_user=your-user-id&btn_pub_ref=your-publisher-reference&btn_ref=org-XXX\\\"\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4fd80057-c359-4e67-b530-eb182a28b1e8",
+              "name": "401",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"link_url\": \"<string>\",\n  \"btn_pub_user\": \"<string>\",\n  \"btn_pub_ref\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"meta\\\": {\\n        \\\"status\\\": \\\"error\\\"\\n    },\\n    \\\"error\\\": {\\n        \\\"message\\\": \\\"Invalid api_key\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "28fc4fe9-ddba-47de-982d-ef764def90a0",
+              "name": "404",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "create"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"link_url\": \"<string>\",\n  \"btn_pub_user\": \"<string>\",\n  \"btn_pub_ref\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n    \\\"meta\\\": {\\n        \\\"status\\\": \\\"error\\\"\\n    },\\n    \\\"error\\\": {\\n        \\\"message\\\": \\\"could not create shortlink\\\"\\n    }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.usebutton.com/v1/affiliation",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "73de56ff-c2ec-491a-9320-a17b4f1b3bfa",
+    "name": "billing-api Accounts Create API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).",
+      "type": "text/plain"
+    }
+  }
+}

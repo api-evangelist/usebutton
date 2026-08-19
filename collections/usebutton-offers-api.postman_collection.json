@@ -1,0 +1,146 @@
+{
+  "item": [
+    {
+      "id": "53e9a0f3-75e3-4a28-a694-523b6a33c9fc",
+      "name": "Offers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "beb88e5e-ac34-4b9d-8f9b-364a13a32f30",
+          "name": "Offers",
+          "request": {
+            "name": "Offers",
+            "description": {
+              "content": "Obtain real-time rates/offers available to a Publisher user.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v1",
+                "offers"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"user_id\": \"<string>\",\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email_sha256s\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"merchant_id\": \"optional\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "77865ef9-a652-4f67-a624-e80447497ec6",
+              "name": "200",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v1",
+                    "offers"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"user_id\": \"<string>\",\n  \"device_ids\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"email_sha256s\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"merchant_id\": \"optional\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"meta\\\": {\\n    \\\"status\\\": \\\"ok\\\"\\n  },\\n  \\\"object\\\": {\\n    \\\"merchant_offers\\\": [\\n      {\\n        \\\"merchant_id\\\": \\\"org-123\\\",\\n        \\\"offers\\\": [\\n          {\\n            \\\"id\\\": \\\"offer-XXX\\\",\\n            \\\"rate_percent\\\": \\\"4.5\\\",\\n            \\\"display_params\\\": {\\n              \\\"category\\\": \\\"Video Games\\\",\\n              \\\"offer_type\\\": \\\"category\\\"\\n            },\\n            \\\"rank\\\": 1\\n          },\\n          {\\n            \\\"id\\\": \\\"offer-YYY\\\",\\n            \\\"rate_percent\\\": \\\"2\\\",\\n            \\\"display_params\\\": {\\n              \\\"offer_tag\\\": \\\"promotional\\\"\\n            },\\n            \\\"rank\\\": 2\\n          },\\n          {\\n            \\\"id\\\": \\\"offer-ZZZ\\\",\\n            \\\"rate_fixed\\\": \\\"1.00\\\",\\n            \\\"currency\\\": \\\"USD\\\",\\n            \\\"display_params\\\": {},\\n            \\\"rank\\\": 3\\n          }\\n        ]\\n      }\\n    ]\\n  }\\n}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.usebutton.com/v1/affiliation",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "58e07bbb-11fd-4954-9bb6-7175b861bd9b",
+    "name": "billing-api Accounts Offers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).",
+      "type": "text/plain"
+    }
+  }
+}

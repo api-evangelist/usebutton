@@ -1,0 +1,74 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "billing-api Accounts Transactions API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Transactions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Transactions (all currencies)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usebutton.com/v1/affiliation/transactions",
+            "params": [
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An opaque string that lets you view a consistent list of transactions."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions created at or after this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions created before this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z"
+              },
+              {
+                "name": "time_field",
+                "value": "",
+                "type": "query",
+                "description": "Time field to filter by. Accepted values are created_date, modified_date, and attribution_date. When not specified, created_date is used as default."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of transaction to retrieve in each request. When not specified, 50 is used as default."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by country. Country is in ISO 3166 Alpha-2 format (case-insensitive). Example: US"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of transactions across all billing accounts (all currencies) visible to your API key. Use pagination via the `cursor` returned in `meta.next` until it is `null`."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

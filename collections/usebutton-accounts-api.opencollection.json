@@ -1,0 +1,91 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "billing-api Accounts API",
+    "version": "4"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Accounts",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Accounts",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usebutton.com/v1/affiliation/accounts"
+          },
+          "docs": "Retrieve the list of billing accounts associated with your organization. Your organization will have one billing account per supported currency."
+        },
+        {
+          "info": {
+            "name": "List Transactions by Account (Single Currency)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.usebutton.com/v1/affiliation/accounts/:account_id/transactions",
+            "params": [
+              {
+                "name": "account_id",
+                "value": "",
+                "type": "path",
+                "description": "The specific account (currency) to query."
+              },
+              {
+                "name": "cursor",
+                "value": "",
+                "type": "query",
+                "description": "An opaque string that lets you view a consistent list of transactions."
+              },
+              {
+                "name": "start",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions created at or after this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z"
+              },
+              {
+                "name": "end",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions created before this time. Time is in RFC 3339 format. Example: 2024-11-18T00:00:00Z"
+              },
+              {
+                "name": "time_field",
+                "value": "",
+                "type": "query",
+                "description": "Time field to filter by. Accepted values are created_date, modified_date, and attribution_date. When not specified, created_date is used as default."
+              },
+              {
+                "name": "page_size",
+                "value": "",
+                "type": "query",
+                "description": "Number of transaction to retrieve in each request. When not specified, 50 is used as default."
+              },
+              {
+                "name": "country",
+                "value": "",
+                "type": "query",
+                "description": "Filter transactions by country. Country is in ISO 3166 Alpha-2 format (case-insensitive). Example: US"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of transactions within a single billing account (single currency)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
