@@ -1,4 +1,4 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
   title: billing-api Accounts API
   version: '4'
@@ -165,6 +165,27 @@ components:
       required:
       - meta
       - objects
+      additionalProperties: false
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+          example: acc-xxx
+        name:
+          type: string
+          example: Publisher USD Account
+        currency:
+          type: string
+          example: USD
+        organization:
+          type: string
+          example: org-xxx
+      required:
+      - id
+      - name
+      - currency
+      - organization
       additionalProperties: false
     Transaction:
       type: object
@@ -334,27 +355,6 @@ components:
           - 'null'
       required:
       - status
-    Account:
-      type: object
-      properties:
-        id:
-          type: string
-          example: acc-xxx
-        name:
-          type: string
-          example: Publisher USD Account
-        currency:
-          type: string
-          example: USD
-        organization:
-          type: string
-          example: org-xxx
-      required:
-      - id
-      - name
-      - currency
-      - organization
-      additionalProperties: false
   responses:
     AccountsOK:
       description: OK

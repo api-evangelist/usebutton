@@ -1,24 +1,51 @@
 {
   "provider": "usebutton",
   "sources": [
-    "usebutton-accounts-api-openapi.yml",
-    "usebutton-brands-api-api-openapi.yml",
-    "usebutton-create-api-openapi.yml",
-    "usebutton-links-api-api-openapi.yml",
-    "usebutton-offers-api-openapi.yml",
-    "usebutton-transactions-api-openapi.yml"
+    "_original/usebutton-billing-openapi.yml",
+    "_original/usebutton-brands-openapi.yml",
+    "_original/usebutton-links-openapi.yml",
+    "_original/usebutton-offers-openapi.yml",
+    "_original/usebutton-shortlink-openapi.yml"
   ],
   "outputs": [
     "usebutton-accounts-api-openapi.yml",
+    "usebutton-transactions-api-openapi.yml",
     "usebutton-brands-api-api-openapi.yml",
-    "usebutton-create-api-openapi.yml",
     "usebutton-links-api-api-openapi.yml",
     "usebutton-offers-api-openapi.yml",
-    "usebutton-transactions-api-openapi.yml"
+    "usebutton-create-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (5 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "usebutton-billing-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "usebutton-billing-openapi.yml: tagged paths GET /accounts -> Accounts",
+    "usebutton-billing-openapi.yml: tagged paths GET /accounts/{account_id}/transactions -> Accounts",
+    "usebutton-billing-openapi.yml: tagged paths GET /transactions -> Transactions",
+    "usebutton-billing-openapi.yml: declared missing tag: Accounts",
+    "usebutton-billing-openapi.yml: declared missing tag: Transactions",
+    "usebutton-brands-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "usebutton-brands-openapi.yml: tagged paths GET / -> Brands Api",
+    "usebutton-brands-openapi.yml: declared missing tag: Brands Api",
+    "usebutton-links-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "usebutton-links-openapi.yml: tagged paths POST / -> Links Api",
+    "usebutton-links-openapi.yml: declared missing tag: Links Api",
+    "usebutton-offers-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "usebutton-offers-openapi.yml: tagged paths POST /v1/offers -> Offers",
+    "usebutton-offers-openapi.yml: declared missing tag: Offers",
+    "usebutton-shortlink-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
+    "usebutton-shortlink-openapi.yml: tagged paths POST /create/ -> Create",
+    "usebutton-shortlink-openapi.yml: tagged paths POST /create -> Create",
+    "usebutton-shortlink-openapi.yml: declared missing tag: Create"
+  ],
+  "skipped": [
+    "usebutton-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "usebutton-brands-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "usebutton-create-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "usebutton-links-api-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "usebutton-offers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "usebutton-transactions-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

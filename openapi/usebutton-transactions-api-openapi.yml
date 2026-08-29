@@ -1,6 +1,6 @@
-openapi: 3.1.0
+openapi: 3.2.0
 info:
-  title: billing-api Accounts Transactions API
+  title: billing-api Transactions API
   version: '4'
   description: The Billing API is for advanced Publishers and Brands. It allows you to programmatically view and ingest economic data related to transactions that you have driven (Publishers) or received (Brands).
 servers:
