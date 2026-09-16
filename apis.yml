@@ -27,14 +27,12 @@ accessModel:
   method: derived
 image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/usebutton.png
 name: Button
-description: >-
-  Button (usebutton.com) is a mobile commerce technology company whose platform connects
-  Publishers and Brands in a two-sided marketplace: publishers deep-link their users into
-  retailer apps and sites with full attribution, and brands acquire and re-engage customers
-  through those optimized journeys. Its server-to-server APIs cover personalized Offers,
-  attributed Link and Shortlink generation (including Amazon creator links), Brand partnership
-  details, Billing/affiliation transaction reporting, and Order reporting, complemented by
-  Publisher SDKs, Merchant Libraries, and HMAC-signed transaction webhooks.
+description: 'Button (usebutton.com) is a mobile commerce technology company whose platform connects Publishers
+  and Brands in a two-sided marketplace: publishers deep-link their users into retailer apps and sites
+  with full attribution, and brands acquire and re-engage customers through those optimized journeys.
+  Its server-to-server APIs cover personalized Offers, attributed Link and Shortlink generation (including
+  Amazon creator links), Brand partnership details, Billing/affiliation transaction reporting, and Order
+  reporting, complemented by Publisher SDKs, Merchant Libraries, and HMAC-signed transaction webhooks.'
 url: https://raw.githubusercontent.com/api-evangelist/usebutton/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -50,7 +48,7 @@ x-enrichment:
   pass: local-v1
 specificationVersion: '0.23'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-09-16'
 tags:
 - Commerce
 - Mobile Commerce
@@ -71,10 +69,10 @@ tags_raw:
 - Retail
 apis:
 - name: Button Order API
-  description: >-
-    Brands report new orders, order updates (including partial returns), and cancellations to Button server-to-server,
-    passing the Button Attribution Token (btn_ref) captured by the Merchant Library; documented in the
-    guides with create (POST /v1/order), update (POST /v1/order/{order_id}), and cancel (DELETE /v1/order/{order_id}).
+  description: Brands report new orders, order updates (including partial returns), and cancellations
+    to Button server-to-server, passing the Button Attribution Token (btn_ref) captured by the Merchant
+    Library; documented in the guides with create (POST /v1/order), update (POST /v1/order/{order_id}),
+    and cancel (DELETE /v1/order/{order_id}).
   humanURL: https://developer.usebutton.com/docs/order-api-overview
   baseURL: https://api.usebutton.com/v1/order
   tags:
@@ -109,7 +107,7 @@ apis:
   - type: Documentation
     url: https://developer.usebutton.com/docs/getting-button-content
 - aid: usebutton:usebutton-brands-api-api
-  name: Button Brands Api API
+  name: Button Brands Api
   description: The Brands Api API from Button — 1 operation(s) for brands api.
   humanURL: https://developer.usebutton.com/reference/list-brand-details
   baseURL: https://api.usebutton.com/v1/brands
@@ -150,7 +148,7 @@ apis:
   - type: Documentation
     url: https://developer.usebutton.com/docs/getting-button-content
 - aid: usebutton:usebutton-links-api-api
-  name: Button Links Api API
+  name: Button Links Api
   description: The Links Api API from Button — 1 operation(s) for links api.
   humanURL: https://developer.usebutton.com/reference/list-brand-details
   baseURL: https://api.usebutton.com/v1/brands
@@ -267,7 +265,10 @@ common:
   url: packages/usebutton-packages.yml
 - type: X-MCPServerCandidate
   url: mcp/usebutton-mcp.yml
-  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate — a tool list derived from the published API contracts, not an existing server. The scorer already read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type surfaces with a server that does not exist.'
+  note: 'Renamed from MCPServer 2026-09-03 (roadmap#247): the manifest self-describes as status: candidate
+    — a tool list derived from the published API contracts, not an existing server. The scorer already
+    read the manifest and reported mcp_server correctly; the MCPServer type was crediting the artifact-type
+    surfaces with a server that does not exist.'
 - type: LLMsTxt
   url: llms/usebutton-llms.txt
 - type: WellKnown
