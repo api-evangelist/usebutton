@@ -38,7 +38,8 @@
     "usebutton-shortlink-openapi.yml: upgraded openapi 3.1.0 -> OpenAPI 3.2.0",
     "usebutton-shortlink-openapi.yml: tagged paths POST /create/ -> Create",
     "usebutton-shortlink-openapi.yml: tagged paths POST /create -> Create",
-    "usebutton-shortlink-openapi.yml: declared missing tag: Create"
+    "usebutton-shortlink-openapi.yml: declared missing tag: Create",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "usebutton-accounts-api-openapi.yml: previously refined output, superseded by openapi/_original/",

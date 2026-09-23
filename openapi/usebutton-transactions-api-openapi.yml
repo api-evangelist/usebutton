@@ -67,69 +67,22 @@ paths:
       - Transactions
 components:
   schemas:
-    LineItem:
+    Meta:
       type: object
       properties:
-        identifier:
+        status:
+          type: string
+          example: ok
+        next:
           type:
           - string
           - 'null'
-          example: sku-1234
-        total:
-          type:
-          - integer
-          - 'null'
-          default: 0
-          example: 6000
-        amount:
-          type:
-          - integer
-          - 'null'
-          default: 0
-          example: 2000
-        quantity:
-          type:
-          - integer
-          - 'null'
-          default: 0
-          example: 3
-        publisher_commission:
-          type:
-          - integer
-          - 'null'
-          default: 0
-          example: 600
-        sku:
+        previous:
           type:
           - string
           - 'null'
-          example: sku-1234
-        gtin:
-          type:
-          - string
-          - 'null'
-          example: '00400000000001'
-        category:
-          type:
-          - string
-          - 'null'
-          example: Clothes
-        subcategory1:
-          type:
-          - string
-          - 'null'
-          example: Kids
-        description:
-          type:
-          - string
-          - 'null'
-          example: T-shirts
-        attributes:
-          type:
-          - object
-          - 'null'
-          additionalProperties: true
-      additionalProperties: false
+      required:
+      - status
     Transaction:
       type: object
       properties:
@@ -282,22 +235,69 @@ components:
       - meta
       - objects
       additionalProperties: false
-    Meta:
+    LineItem:
       type: object
       properties:
-        status:
-          type: string
-          example: ok
-        next:
+        identifier:
           type:
           - string
           - 'null'
-        previous:
+          example: sku-1234
+        total:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 6000
+        amount:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 2000
+        quantity:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 3
+        publisher_commission:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 600
+        sku:
           type:
           - string
           - 'null'
-      required:
-      - status
+          example: sku-1234
+        gtin:
+          type:
+          - string
+          - 'null'
+          example: '00400000000001'
+        category:
+          type:
+          - string
+          - 'null'
+          example: Clothes
+        subcategory1:
+          type:
+          - string
+          - 'null'
+          example: Kids
+        description:
+          type:
+          - string
+          - 'null'
+          example: T-shirts
+        attributes:
+          type:
+          - object
+          - 'null'
+          additionalProperties: true
+      additionalProperties: false
   responses:
     TransactionsAllOK:
       description: OK

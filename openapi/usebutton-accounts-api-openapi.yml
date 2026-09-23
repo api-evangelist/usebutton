@@ -90,69 +90,22 @@ paths:
       - Accounts
 components:
   schemas:
-    LineItem:
+    Meta:
       type: object
       properties:
-        identifier:
+        status:
+          type: string
+          example: ok
+        next:
           type:
           - string
           - 'null'
-          example: sku-1234
-        total:
-          type:
-          - integer
-          - 'null'
-          default: 0
-          example: 6000
-        amount:
-          type:
-          - integer
-          - 'null'
-          default: 0
-          example: 2000
-        quantity:
-          type:
-          - integer
-          - 'null'
-          default: 0
-          example: 3
-        publisher_commission:
-          type:
-          - integer
-          - 'null'
-          default: 0
-          example: 600
-        sku:
+        previous:
           type:
           - string
           - 'null'
-          example: sku-1234
-        gtin:
-          type:
-          - string
-          - 'null'
-          example: '00400000000001'
-        category:
-          type:
-          - string
-          - 'null'
-          example: Clothes
-        subcategory1:
-          type:
-          - string
-          - 'null'
-          example: Kids
-        description:
-          type:
-          - string
-          - 'null'
-          example: T-shirts
-        attributes:
-          type:
-          - object
-          - 'null'
-          additionalProperties: true
-      additionalProperties: false
+      required:
+      - status
     AccountsResponse:
       type: object
       properties:
@@ -165,27 +118,6 @@ components:
       required:
       - meta
       - objects
-      additionalProperties: false
-    Account:
-      type: object
-      properties:
-        id:
-          type: string
-          example: acc-xxx
-        name:
-          type: string
-          example: Publisher USD Account
-        currency:
-          type: string
-          example: USD
-        organization:
-          type: string
-          example: org-xxx
-      required:
-      - id
-      - name
-      - currency
-      - organization
       additionalProperties: false
     Transaction:
       type: object
@@ -326,6 +258,27 @@ components:
       - created_date
       - modified_date
       additionalProperties: true
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+          example: acc-xxx
+        name:
+          type: string
+          example: Publisher USD Account
+        currency:
+          type: string
+          example: USD
+        organization:
+          type: string
+          example: org-xxx
+      required:
+      - id
+      - name
+      - currency
+      - organization
+      additionalProperties: false
     TransactionsResponse:
       type: object
       properties:
@@ -339,39 +292,70 @@ components:
       - meta
       - objects
       additionalProperties: false
-    Meta:
+    LineItem:
       type: object
       properties:
-        status:
-          type: string
-          example: ok
-        next:
+        identifier:
           type:
           - string
           - 'null'
-        previous:
+          example: sku-1234
+        total:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 6000
+        amount:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 2000
+        quantity:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 3
+        publisher_commission:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 600
+        sku:
           type:
           - string
           - 'null'
-      required:
-      - status
+          example: sku-1234
+        gtin:
+          type:
+          - string
+          - 'null'
+          example: '00400000000001'
+        category:
+          type:
+          - string
+          - 'null'
+          example: Clothes
+        subcategory1:
+          type:
+          - string
+          - 'null'
+          example: Kids
+        description:
+          type:
+          - string
+          - 'null'
+          example: T-shirts
+        attributes:
+          type:
+          - object
+          - 'null'
+          additionalProperties: true
+      additionalProperties: false
   responses:
-    AccountsOK:
-      description: OK
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AccountsResponse'
-          examples:
-            Result:
-              value:
-                meta:
-                  status: ok
-                objects:
-                - id: acc-xxx
-                  name: Button Account
-                  currency: USD
-                  organization: org-xxx
     TransactionsByAccountOK:
       description: OK
       content:
@@ -424,6 +408,22 @@ components:
                   country: us
                   status: pending
                   advertising_id: null
+    AccountsOK:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccountsResponse'
+          examples:
+            Result:
+              value:
+                meta:
+                  status: ok
+                objects:
+                - id: acc-xxx
+                  name: Button Account
+                  currency: USD
+                  organization: org-xxx
   securitySchemes:
     sec0:
       type: http
