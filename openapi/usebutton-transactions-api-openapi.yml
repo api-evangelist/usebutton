@@ -66,6 +66,59 @@ paths:
       tags:
       - Transactions
 components:
+  responses:
+    TransactionsAllOK:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TransactionsResponse'
+          examples:
+            Result:
+              summary: Transactions across accounts
+              value:
+                meta:
+                  status: ok
+                  next: https://api.usebutton.com/v1/affiliation/transactions?cursor=cXw
+                  previous: null
+                objects:
+                - publisher_customer_id: 1111-3333-4444-999999999999
+                  publisher_organization: org-YYY
+                  publisher_organization_name: Publisher Company Name
+                  commerce_organization: org-XXX
+                  commerce_organization_name: Brand Company Name
+                  button_id: static
+                  account_id: acc-XXX
+                  btn_ref: srctok-XXX
+                  pub_ref: your-publisher-ref
+                  button_order_id: btnorder-XXX
+                  order_id: null
+                  order_total: 6000
+                  order_currency: USD
+                  order_line_items:
+                  - identifier: sku-1234
+                    total: 6000
+                    amount: 2000
+                    quantity: 3
+                    publisher_commission: 600
+                    sku: sku-1234
+                    gtin: '00400000000001'
+                    category: Clothes
+                    subcategory1: Kids
+                    description: T-shirts
+                    attributes:
+                      size: M
+                  order_click_channel: app
+                  category: new-user-order
+                  id: tx-XXX
+                  created_date: '2024-11-18T19:49:17Z'
+                  modified_date: '2024-11-18T19:49:17Z'
+                  attribution_date: '2024-11-18T19:49:17Z'
+                  amount: 600
+                  currency: USD
+                  country: US
+                  status: pending
+                  advertising_id: null
   schemas:
     Meta:
       type: object
@@ -222,19 +275,6 @@ components:
       - created_date
       - modified_date
       additionalProperties: true
-    TransactionsResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        objects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Transaction'
-      required:
-      - meta
-      - objects
-      additionalProperties: false
     LineItem:
       type: object
       properties:
@@ -298,59 +338,19 @@ components:
           - 'null'
           additionalProperties: true
       additionalProperties: false
-  responses:
-    TransactionsAllOK:
-      description: OK
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TransactionsResponse'
-          examples:
-            Result:
-              summary: Transactions across accounts
-              value:
-                meta:
-                  status: ok
-                  next: https://api.usebutton.com/v1/affiliation/transactions?cursor=cXw
-                  previous: null
-                objects:
-                - publisher_customer_id: 1111-3333-4444-999999999999
-                  publisher_organization: org-YYY
-                  publisher_organization_name: Publisher Company Name
-                  commerce_organization: org-XXX
-                  commerce_organization_name: Brand Company Name
-                  button_id: static
-                  account_id: acc-XXX
-                  btn_ref: srctok-XXX
-                  pub_ref: your-publisher-ref
-                  button_order_id: btnorder-XXX
-                  order_id: null
-                  order_total: 6000
-                  order_currency: USD
-                  order_line_items:
-                  - identifier: sku-1234
-                    total: 6000
-                    amount: 2000
-                    quantity: 3
-                    publisher_commission: 600
-                    sku: sku-1234
-                    gtin: '00400000000001'
-                    category: Clothes
-                    subcategory1: Kids
-                    description: T-shirts
-                    attributes:
-                      size: M
-                  order_click_channel: app
-                  category: new-user-order
-                  id: tx-XXX
-                  created_date: '2024-11-18T19:49:17Z'
-                  modified_date: '2024-11-18T19:49:17Z'
-                  attribution_date: '2024-11-18T19:49:17Z'
-                  amount: 600
-                  currency: USD
-                  country: US
-                  status: pending
-                  advertising_id: null
+    TransactionsResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Transaction'
+      required:
+      - meta
+      - objects
+      additionalProperties: false
   securitySchemes:
     sec0:
       type: http
