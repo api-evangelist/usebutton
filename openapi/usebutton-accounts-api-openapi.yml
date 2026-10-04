@@ -89,7 +89,139 @@ paths:
       tags:
       - Accounts
 components:
+  responses:
+    TransactionsByAccountOK:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/TransactionsResponse'
+          examples:
+            Result:
+              summary: List Transactions by Account
+              value:
+                meta:
+                  status: ok
+                  next: https://api.usebutton.com/v1/affiliation/accounts/acc-xxx/transactions?cursor=cXw
+                  previous: null
+                objects:
+                - publisher_customer_id: 1111-3333-4444-999999999999
+                  publisher_organization: org-YYY
+                  publisher_organization_name: Publisher Company Name
+                  commerce_organization: org-XXX
+                  commerce_organization_name: Brand Company Name
+                  button_id: static
+                  account_id: acc-XXX
+                  btn_ref: srctok-XXX
+                  pub_ref: Publisher Reference String
+                  button_order_id: btnorder-XXX
+                  order_id: null
+                  order_total: 6000
+                  order_currency: USD
+                  order_line_items:
+                  - identifier: sku-1234
+                    total: 6000
+                    amount: 2000
+                    quantity: 3
+                    publisher_commission: 600
+                    sku: sku-1234
+                    gtin: '00400000000001'
+                    category: Clothes
+                    subcategory1: Kids
+                    description: T-shirts
+                    attributes:
+                      size: M
+                  order_click_channel: app
+                  category: new-user-order
+                  id: tx-XXX
+                  created_date: '2024-11-18T19:49:17Z'
+                  modified_date: '2024-11-18T19:49:17Z'
+                  attribution_date: '2024-11-18T19:49:17Z'
+                  amount: 600
+                  currency: USD
+                  country: us
+                  status: pending
+                  advertising_id: null
+    AccountsOK:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/AccountsResponse'
+          examples:
+            Result:
+              value:
+                meta:
+                  status: ok
+                objects:
+                - id: acc-xxx
+                  name: Button Account
+                  currency: USD
+                  organization: org-xxx
   schemas:
+    LineItem:
+      type: object
+      properties:
+        identifier:
+          type:
+          - string
+          - 'null'
+          example: sku-1234
+        total:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 6000
+        amount:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 2000
+        quantity:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 3
+        publisher_commission:
+          type:
+          - integer
+          - 'null'
+          default: 0
+          example: 600
+        sku:
+          type:
+          - string
+          - 'null'
+          example: sku-1234
+        gtin:
+          type:
+          - string
+          - 'null'
+          example: '00400000000001'
+        category:
+          type:
+          - string
+          - 'null'
+          example: Clothes
+        subcategory1:
+          type:
+          - string
+          - 'null'
+          example: Kids
+        description:
+          type:
+          - string
+          - 'null'
+          example: T-shirts
+        attributes:
+          type:
+          - object
+          - 'null'
+          additionalProperties: true
+      additionalProperties: false
     Transaction:
       type: object
       properties:
@@ -229,82 +361,6 @@ components:
       - created_date
       - modified_date
       additionalProperties: true
-    LineItem:
-      type: object
-      properties:
-        identifier:
-          type:
-          - string
-          - 'null'
-          example: sku-1234
-        total:
-          type:
-          - integer
-          - 'null'
-          default: 0
-          example: 6000
-        amount:
-          type:
-          - integer
-          - 'null'
-          default: 0
-          example: 2000
-        quantity:
-          type:
-          - integer
-          - 'null'
-          default: 0
-          example: 3
-        publisher_commission:
-          type:
-          - integer
-          - 'null'
-          default: 0
-          example: 600
-        sku:
-          type:
-          - string
-          - 'null'
-          example: sku-1234
-        gtin:
-          type:
-          - string
-          - 'null'
-          example: '00400000000001'
-        category:
-          type:
-          - string
-          - 'null'
-          example: Clothes
-        subcategory1:
-          type:
-          - string
-          - 'null'
-          example: Kids
-        description:
-          type:
-          - string
-          - 'null'
-          example: T-shirts
-        attributes:
-          type:
-          - object
-          - 'null'
-          additionalProperties: true
-      additionalProperties: false
-    AccountsResponse:
-      type: object
-      properties:
-        meta:
-          $ref: '#/components/schemas/Meta'
-        objects:
-          type: array
-          items:
-            $ref: '#/components/schemas/Account'
-      required:
-      - meta
-      - objects
-      additionalProperties: false
     Meta:
       type: object
       properties:
@@ -321,6 +377,19 @@ components:
           - 'null'
       required:
       - status
+    AccountsResponse:
+      type: object
+      properties:
+        meta:
+          $ref: '#/components/schemas/Meta'
+        objects:
+          type: array
+          items:
+            $ref: '#/components/schemas/Account'
+      required:
+      - meta
+      - objects
+      additionalProperties: false
     Account:
       type: object
       properties:
@@ -355,75 +424,6 @@ components:
       - meta
       - objects
       additionalProperties: false
-  responses:
-    TransactionsByAccountOK:
-      description: OK
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/TransactionsResponse'
-          examples:
-            Result:
-              summary: List Transactions by Account
-              value:
-                meta:
-                  status: ok
-                  next: https://api.usebutton.com/v1/affiliation/accounts/acc-xxx/transactions?cursor=cXw
-                  previous: null
-                objects:
-                - publisher_customer_id: 1111-3333-4444-999999999999
-                  publisher_organization: org-YYY
-                  publisher_organization_name: Publisher Company Name
-                  commerce_organization: org-XXX
-                  commerce_organization_name: Brand Company Name
-                  button_id: static
-                  account_id: acc-XXX
-                  btn_ref: srctok-XXX
-                  pub_ref: Publisher Reference String
-                  button_order_id: btnorder-XXX
-                  order_id: null
-                  order_total: 6000
-                  order_currency: USD
-                  order_line_items:
-                  - identifier: sku-1234
-                    total: 6000
-                    amount: 2000
-                    quantity: 3
-                    publisher_commission: 600
-                    sku: sku-1234
-                    gtin: '00400000000001'
-                    category: Clothes
-                    subcategory1: Kids
-                    description: T-shirts
-                    attributes:
-                      size: M
-                  order_click_channel: app
-                  category: new-user-order
-                  id: tx-XXX
-                  created_date: '2024-11-18T19:49:17Z'
-                  modified_date: '2024-11-18T19:49:17Z'
-                  attribution_date: '2024-11-18T19:49:17Z'
-                  amount: 600
-                  currency: USD
-                  country: us
-                  status: pending
-                  advertising_id: null
-    AccountsOK:
-      description: OK
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/AccountsResponse'
-          examples:
-            Result:
-              value:
-                meta:
-                  status: ok
-                objects:
-                - id: acc-xxx
-                  name: Button Account
-                  currency: USD
-                  organization: org-xxx
   securitySchemes:
     sec0:
       type: http
